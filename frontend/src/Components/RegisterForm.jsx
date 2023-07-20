@@ -2,9 +2,13 @@ import React, { useState } from "react";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useNavigate} from "react-router-dom";
+import {registerRoute} from "../Routes/apiroute"
 
 
 const RegisterForm = () => {
+
+  const navigate = useNavigate();
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
   const [password2, setpassword2] = useState("");
@@ -39,10 +43,26 @@ const RegisterForm = () => {
     return true;
   };
 
-  const registeruser = (event) => {
+  const registeruser = async(event) => {
     event.preventDefault()
     if(inputvalidation()){
       toast.success("Registering",toastOptions)
+      const { data } = await axios.post(registerRoute, {
+        email,
+        password,
+      });
+
+      if (data.status === false) {
+        toast.error(data.msg, toastOptions);
+      }
+      if (data.status === true) {
+        toast.success("Registering",toastOptions)
+        localStorage.setItem(
+          "current-user",
+          JSON.stringify(data.user)
+        );
+        navigate("/");
+      }
     }
     
   };
