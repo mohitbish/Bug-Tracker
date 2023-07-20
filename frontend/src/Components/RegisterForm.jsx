@@ -1,15 +1,65 @@
-import React from 'react'
+import React, { useState } from "react";
+import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 
 const RegisterForm = () => {
+  const [email, setemail] = useState("");
+  const [password, setpassword] = useState("");
+  const [password2, setpassword2] = useState("");
+
+  const toastOptions = {
+    position: "top-right",
+    autoClose: 3000,
+    pauseOnHover: true,
+    draggable: true,
+    theme: "light",
+  };
+
+  const handleemailChange = (event) => {
+    setemail(event.target.value);
+  };
+  const handlepasswordChange = (event) => {
+    setpassword(event.target.value);
+  };
+  const handlepassword2Change = (event) => {
+    setpassword2(event.target.value);
+  };
+
+  const inputvalidation = () => {
+    if (password.length < 8) {
+      toast.error("Password should be at least 8 characters", toastOptions);
+      return false;
+    }
+    if (password2 !== password) {
+      toast.error("Passwords do not match", toastOptions);
+      return false;
+    }
+    return true;
+  };
+
+  const registeruser = (event) => {
+    event.preventDefault()
+    if(inputvalidation()){
+      toast.success("Registering",toastOptions)
+    }
+    
+  };
+
   return (
     <>
-      <form className="w-2/5 bg-gray-300  items-center px-10 pt-2 pb-10 rounded-t-xl">
+
+      <form
+        onSubmit={(event) => registeruser(event)}
+        className="w-2/5 bg-gray-300  items-center px-10 pt-2 pb-10 rounded-t-xl"
+      >
         <h1 className="text-4xl font-bold text-blue-700 uppercase text-center mt-2 mb-12">
           Register
         </h1>
         <div className="mb-6 ">
           <label
-            for="email"
+            htmlFor="email"
             className="block mb-2 text-sm uppercase font-bold text-gray-900 dark:text-white"
           >
             email
@@ -17,14 +67,15 @@ const RegisterForm = () => {
           <input
             type="email"
             id="email"
+            onChange={(e) => handleemailChange(e)}
             className=" w-3/5 shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
             placeholder="name@bgtrack.com"
             required
           />
         </div>
-        <div class="mb-6 ">
+        <div className="mb-6 ">
           <label
-            for="password"
+            htmlFor="password"
             className="block mb-2  text-sm uppercase font-bold text-gray-900 dark:text-white"
           >
             password
@@ -32,20 +83,22 @@ const RegisterForm = () => {
           <input
             type="password"
             id="password"
+            onChange={(e) => handlepasswordChange(e)}
             className="w-3/5 shadow-sm  bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
             required
           />
         </div>
-        <div class="mb-6 ">
+        <div className="mb-6 ">
           <label
-            for="password"
+            htmlFor="password2"
             className="block mb-2  text-sm uppercase font-bold text-gray-900 dark:text-white"
           >
             confirm password
           </label>
           <input
             type="password"
-            id="password"
+            id="password2"
+            onChange={(e) => handlepassword2Change(e)}
             className="w-3/5 shadow-sm  bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
             required
           />
@@ -58,8 +111,9 @@ const RegisterForm = () => {
           Register
         </button>
       </form>
+      <ToastContainer />
     </>
-  )
-}
+  );
+};
 
-export default RegisterForm
+export default RegisterForm;

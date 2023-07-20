@@ -9,7 +9,7 @@ const LoginForm = () => {
         </h1>
         <div className="mb-6 ">
           <label
-            for="email"
+            htmlFor ="email"
             className="block mb-2 text-sm uppercase font-bold text-gray-900 dark:text-white"
           >
             email
@@ -22,9 +22,9 @@ const LoginForm = () => {
             required
           />
         </div>
-        <div class="mb-6 ">
+        <div className="mb-6 ">
           <label
-            for="password"
+            htmlFor ="password"
             className="block mb-2  text-sm uppercase font-bold text-gray-900 dark:text-white"
           >
             password
