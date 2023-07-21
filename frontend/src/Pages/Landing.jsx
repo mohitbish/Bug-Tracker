@@ -65,9 +65,11 @@ const Landing = () => {
       </div>
 
       <div className="w-full h-screen bg-blue-100 dark:bg-gray-900 flex flex-col items-center pt-10">
-        <h2 className="text-2xl text:black dark:text-white uppercase font-bold mb-10">
+        {formcheck?(<h2 className="text-2xl text:black dark:text-white uppercase font-bold mb-10">
           Login
-        </h2>
+        </h2>):(<h2 className="text-2xl text:black dark:text-white uppercase font-bold mb-10">
+          Register
+        </h2>)}
         {formcheck ? <LoginForm /> : <RegisterForm />}
         <div className="mt-10  flex flex-row px-2 py-4">
           {formcheck ? (
