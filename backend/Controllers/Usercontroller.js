@@ -3,8 +3,7 @@ const User = require("../Models/User");
 
 module.exports.register = async (req, res, next) => {
   try {
-    const { email, password } = req.body;
-
+    const { email, password ,role } = req.body;
     const emailCheck = await User.findOne({ email });
     if (emailCheck)
       return res.json({ msg: "Email already used", status: false });
@@ -12,8 +11,8 @@ module.exports.register = async (req, res, next) => {
     const hashedPassword = await bcrypt.hash(password, 10);
     const user = await User.create({
       email,
-      role:"user",
       password: hashedPassword,
+      role 
     });
     delete user.password;
     return res.json({ status: true, user });

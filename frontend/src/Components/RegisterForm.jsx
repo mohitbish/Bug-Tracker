@@ -7,7 +7,6 @@ import {registerRoute} from "../Routes/apiroute"
 
 
 const RegisterForm = () => {
-
   const navigate = useNavigate();
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
@@ -50,6 +49,7 @@ const RegisterForm = () => {
       const { data } = await axios.post(registerRoute, {
         email,
         password,
+        role:"user"
       });
 
       if (data.status === false) {
@@ -57,11 +57,12 @@ const RegisterForm = () => {
       }
       if (data.status === true) {
         toast.success("Registering",toastOptions)
+        localStorage.clear()
         localStorage.setItem(
           "current-user",
           JSON.stringify(data.user)
         );
-        navigate("/");
+        navigate("/home");
       }
     }
     
