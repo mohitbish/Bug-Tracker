@@ -1,11 +1,18 @@
-import React from 'react'
+import React from "react";
+import { DarkThemeToggle, Flowbite } from "flowbite-react";
+import NavbarComponenet from "../Components/Navbar";
 
 const Home = () => {
   return (
-    <div>
-      <h1>hello</h1>
-    </div>
-  )
-}
+    <>
+      <Flowbite>
+        <div className="flex flex-row">
+          <NavbarComponenet />
+          <DarkThemeToggle />
+        </div>
+      </Flowbite>
+    </>
+  );
+};
 
-export default Home
+export default Home;

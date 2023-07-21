@@ -19,11 +19,10 @@ Bug Tracker
 
 
 
-User Registration and Sign-in:
-Users should be able to register with the bug tracker system.
-Users should be able to sign in using their credentials (username/email and password).
-Admin Registration and Sign-in:
-Admins should have a separate registration process from regular users.
+#User Registration and Sign-in:
+#Users should be able to register with the bug tracker system.
+#Users should be able to sign in using their credentials (username/email and password).
+#only admin can add a user to admin role
 Admins should have unique privileges and access to administrative features.
 Dashboard:
 Upon signing in, users and admins should be directed to their respective dashboards.
