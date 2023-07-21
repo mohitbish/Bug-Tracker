@@ -12,7 +12,7 @@ const Loginform = () => {
 
   const toastOptions = {
     position: "top-right",
-    autoClose: 3000,
+    autoClose: 5000,
     pauseOnHover: true,
     draggable: true,
     theme: "light",
@@ -56,7 +56,7 @@ const Loginform = () => {
     <>
       <form 
       onSubmit={(event) => loginuser(event)}
-      className="w-3/5">
+      className="w-2/5">
         <div className="mb-6">
           <label
             htmlFor="email"

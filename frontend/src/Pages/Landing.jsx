@@ -1,62 +1,50 @@
-import React, { useState, useEffect } from "react";
-import logo from "../Assets/logo.png";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import LoginForm from "../Components/LoginForm";
 import RegisterForm from "../Components/RegisterForm";
+import DarkModeComponent from "../Components/DarkModeComponent";
+import { loginRoute } from "../Routes/apiroute";
 
 const Landing = () => {
+  const navigate = useNavigate();
   const [formcheck, setformcheck] = useState(true);
-  const [darkMode, setDarkMode] = useState(true);
-  const changetheme = () => {
-    setDarkMode(!darkMode);
-  };
-  useEffect(() => {
-    document.body.classList.toggle("dark", darkMode);
-  }, [darkMode]);
 
   const formchange = () => {
     setformcheck(!formcheck);
   };
 
+  const toastOptions = {
+    position: "top-right",
+    autoClose: 5000,
+    pauseOnHover: true,
+    draggable: true,
+    theme: "light",
+  };
+
+  const demouserlogin = async () => {
+    toast.success("Checking", toastOptions);
+    const { data } = await axios.post(loginRoute, {
+      email: "m@g.com",
+      password: "12345678",
+    });
+
+    if (data.status === false) {
+      toast.error(data.msg, toastOptions);
+    }
+    if (data.status === true) {
+      toast.success("loading", toastOptions);
+      localStorage.setItem("current-user", JSON.stringify(data.user));
+      navigate("/home");
+    }
+  };
+
   return (
     <>
       <div className="realtive flex flex-row justify-between bg-blue-100 border-gray-200 dark:bg-gray-900">
-        <div className="absolute top-3 right-2 ">
-          <button onClick={() => changetheme()}>
-            {darkMode ? (
-              <svg
-                className="w-[30px] h-[30px] text-gray-800 dark:text-white"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 20 20"
-              >
-                <path
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2.3"
-                  d="M10 3V1m0 18v-2M5.05 5.05 3.636 3.636m12.728 12.728L14.95 14.95M3 10H1m18 0h-2M5.05 14.95l-1.414 1.414M16.364 3.636 14.95 5.05M14 10a4 4 0 1 1-8 0 4 4 0 0 1 8 0Z"
-                />
-              </svg>
-            ) : (
-              <svg
-                className="w-[30px] h-[30px] text-gray-800 dark:text-white"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 18 20"
-              >
-                <path
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2.3"
-                  d="M8.509 5.75c0-1.493.394-2.96 1.144-4.25h-.081a8.5 8.5 0 1 0 7.356 12.746A8.5 8.5 0 0 1 8.509 5.75Z"
-                />
-              </svg>
-            )}
-          </button>
-        </div>
+        <DarkModeComponent />
 
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
           <a className="flex items-center">
@@ -76,50 +64,52 @@ const Landing = () => {
         </div>
       </div>
 
-      <div className="w-full h-screen bg-blue-100 dark:bg-gray-900 flex flex-col items-center pt-20">
+      <div className="w-full h-screen bg-blue-100 dark:bg-gray-900 flex flex-col items-center pt-10">
         <h2 className="text-2xl text:black dark:text-white uppercase font-bold mb-10">
           Login
         </h2>
-        {formcheck?<LoginForm />:<RegisterForm/>}
-        <div className="mt-10 w-2/6 flex flex-col px-2 py-4">
-          {formcheck
-          ?<div className="flex flex-row my-2 justify-between">
-            <span className="block mb-2 text-sm font-medium text-gray-900 dark:text-white my-2">
-              New to app?
-            </span>
-            <button
-              type="button"
-              onClick={()=>formchange()}
-              className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-            >
-              Signup
-            </button>
-          </div>
-          :<div className="flex flex-row my-2 justify-between">
-            <span className="block mb-2 text-sm font-medium text-gray-900 dark:text-white my-2">
-              Already a user?
-            </span>
-            <button
-              type="button"
-              onClick={()=>formchange()}
-              className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-            >
-              login
-            </button>
-          </div>
-          }
-          <div className="flex flex-row my-2 justify-between">
+        {formcheck ? <LoginForm /> : <RegisterForm />}
+        <div className="mt-10  flex flex-row px-2 py-4">
+          {formcheck ? (
+            <div className="flex flex-col my-2 mx-2">
+              <span className="block mb-2 text-sm font-medium text-gray-900 dark:text-white my-2">
+                New to app?
+              </span>
+              <button
+                type="button"
+                onClick={() => formchange()}
+                className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              >
+                Signup
+              </button>
+            </div>
+          ) : (
+            <div  className="flex flex-col my-2 mx-2">
+              <span className="block mb-2 text-sm font-medium text-gray-900 dark:text-white my-2">
+                Already a user?
+              </span>
+              <button
+                type="button"
+                onClick={() => formchange()}
+                className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              >
+                login
+              </button>
+            </div>
+          )}
+          <div  className="flex flex-col my-2 mx-2">
             <span className="block mb-2 text-sm font-medium text-gray-900 dark:text-white my-2 ">
               Demo user login?
             </span>
             <button
               type="button"
+              onClick={() => demouserlogin()}
               className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             >
               User
             </button>
           </div>
-          <div className="flex flex-row my-2 justify-between">
+          <div  className="flex flex-col my-2 mx-2">
             <span className="block mb-2 text-sm font-medium text-gray-900 dark:text-white my-2 ">
               Demo admin login?
             </span>
@@ -132,6 +122,7 @@ const Landing = () => {
           </div>
         </div>
       </div>
+      <ToastContainer />
     </>
   );
 };
