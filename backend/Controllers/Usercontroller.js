@@ -3,20 +3,20 @@ const User = require("../Models/User");
 
 module.exports.register = async (req, res, next) => {
   try {
-    const { username ,email, password ,role } = req.body;
+    const { username, email, password, role } = req.body;
     const emailCheck = await User.findOne({ email });
     if (emailCheck)
       return res.json({ msg: "Email already used", status: false });
     const usernameCheck = await User.findOne({ username });
-      if (usernameCheck)
-        return res.json({ msg: "username already used", status: false });
+    if (usernameCheck)
+      return res.json({ msg: "username already used", status: false });
 
     const hashedPassword = await bcrypt.hash(password, 10);
     const user = await User.create({
       username,
       email,
       password: hashedPassword,
-      role 
+      role,
     });
     delete user.password;
     return res.json({ status: true, user });
@@ -41,3 +41,11 @@ module.exports.login = async (req, res, next) => {
   }
 };
 
+module.exports.getusers = async (req, res, next) => {
+  try {
+    const users = await User.find();
+    return res.json({ status: true, users });
+  } catch (ex) {
+    next(ex);
+  }
+};
