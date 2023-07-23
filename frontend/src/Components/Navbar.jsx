@@ -4,18 +4,18 @@ import DarkModeComponent from "./DarkModeComponent";
 
 const NavbarComponenet = () => {
   const navigate = useNavigate();
-  const[usercheck,setusercheck]= useState(false)
+  const [usercheck, setusercheck] = useState(false);
 
-  useEffect(()=>{
-    const current_user = JSON.parse(localStorage.getItem("current-user"))
-    if(current_user.role === 'admin'){
-      setusercheck(!usercheck)
+  useEffect(() => {
+    const current_user = JSON.parse(localStorage.getItem("current-user"));
+    if (current_user.role === "admin") {
+      setusercheck(!usercheck);
     }
-  },[])
+  }, []);
 
   const logout = () => {
-    localStorage.clear()
-    navigate('/')
+    localStorage.clear();
+    navigate("/");
   };
 
   return (
@@ -23,7 +23,7 @@ const NavbarComponenet = () => {
       <div className="w-full relative flex flex-row">
         <DarkModeComponent />
         <nav className="w-full bg-white border-gray-200 dark:bg-gray-900">
-          <div className="flex flex-wrap items-center  max-w-screen-xl p-4">
+          <div className="flex flex-row justify-between items-center  max-w-screen-xl p-4">
             <a className="flex items-center mr-12">
               <svg
                 className="w-6 h-6 text-gray-800 dark:text-white mx-2"
@@ -38,18 +38,19 @@ const NavbarComponenet = () => {
                 Bug-Tracker
               </span>
             </a>
-            <div className="flex items-center ">
-              <a
-                href="tel:5541251234"
-                className="mr-6  text-gray-500 dark:text-white hover:underline"
-              >
-                user email
-              </a>
+            <div className="flex items-center px-10">
               <button
-                onClick={()=>logout()}
+                
+                className=" text-blue-600 dark:text-blue-500 hover:underline mx-4"
+              >
+                Profile
+              </button>
+
+              <button
+                onClick={() => logout()}
                 className=" text-blue-600 dark:text-blue-500 hover:underline"
               >
-                logout
+                Logout
               </button>
             </div>
           </div>
@@ -60,7 +61,7 @@ const NavbarComponenet = () => {
           <div className="flex items-center">
             <ul className="flex flex-row font-medium mt-0 mr-6 space-x-8 text-sm">
               <li>
-              <Link
+                <Link
                   to="/home"
                   className="text-gray-900 dark:text-white hover:underline text-xl"
                 >
@@ -83,14 +84,18 @@ const NavbarComponenet = () => {
                   Team
                 </a>
               </li>
-              {usercheck?(<li>
-                <Link
-                  to="/adminrole"
-                  className="text-gray-900 dark:text-white hover:underline text-xl"
-                >
-                  Manage-Users
-                </Link>
-              </li>):(<></>)}
+              {usercheck ? (
+                <li>
+                  <Link
+                    to="/adminrole"
+                    className="text-gray-900 dark:text-white hover:underline text-xl"
+                  >
+                    Manage-Users
+                  </Link>
+                </li>
+              ) : (
+                <></>
+              )}
             </ul>
           </div>
         </div>

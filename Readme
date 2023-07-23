@@ -4,9 +4,9 @@ Bug Tracker
 
   Components:
   
-	- Users -> User Roles
-	- Tickets -> Bug types 
-	- Projects -> [have Users -> Users have Roles] -> have Tickets
+	- Users -> {userinfo, ticketlist ,[Projectnames]} 
+	- Tickets -> Bug types and info [ticketinfo, name, Projectnamne, createdby]
+	- Projects -> [have Users -> Users have Roles] -> have Tickets {name,userlist,ticketlist}
 	
   Actions:
 	
@@ -22,6 +22,10 @@ Bug Tracker
 #Users should be able to sign in using their credentials (username/email and password).
 #only admin can add a user to admin role
 #Admins should have unique privileges and access to administrative features.
+#User Roles and Permissions:
+#Admins should have additional privileges compared to regular users.
+#Admins should have a profile that includes additional administrative settings.
+#The system should allow customization of user roles and permissions.
 
 Dashboard:
 #Upon signing in, users and admins should be directed to their respective dashboards.
@@ -32,35 +36,34 @@ Users should be able to create new bug reports or issues, providing detailed inf
 Users should be able to view, edit, and delete issues they have reported.
 Users should be able to add comments and updates to existing issues.
 Admins should be able to manage all issues, assign them to specific users, and prioritize them.
+
 Search and Filters:
 Users should be able to search for specific issues based on various criteria (e.g., title, status, priority).
 The system should support filtering and sorting of issues for better organization.
+
 Notifications:
 Users and admins should receive notifications for new issues, status updates, or assignments.
 Notifications can be delivered via email, in-app notifications, or both.
+
 Workflow and Status:
 The system should support a customizable workflow with various statuses for issues (e.g., open, in progress, closed).
 Admins should be able to define the workflow stages and their transitions.
+
 File Attachments:
 Users should be able to attach files (e.g., screenshots, documents) to bug reports.
 The system should support file storage and retrieval.
-User Roles and Permissions:
-Admins should have additional privileges compared to regular users.
-The system should allow customization of user roles and permissions.
+
+
+
 User Profile:
 Users should have a profile where they can manage their account information.
-Admins should have a profile that includes additional administrative settings.
-Project Management (Optional):
-The system could support the management of multiple projects and their respective issues.
-Users and admins should be able to switch between different projects.
-Analytics and Reports (Optional):
-Admins should have access to analytical reports on issue trends, resolution times, etc.
-User Interface and Usability:
-The user interface should be intuitive, user-friendly, and responsive.
-The design should consider accessibility and usability principles.
+
+
+
 Security:
 The system should employ secure authentication and encryption methods.
-Admin and user passwords should be securely stored (hashed and salted).
+#Admin and user passwords should be securely stored (hashed and salted).
 Authorization mechanisms should restrict access to sensitive data and functionality.
+
 Mobile Compatibility (Optional):
 The bug tracker could have a mobile-friendly version or a dedicated mobile app.
