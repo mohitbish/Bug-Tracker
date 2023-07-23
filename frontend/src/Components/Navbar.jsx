@@ -4,6 +4,14 @@ import DarkModeComponent from "./DarkModeComponent";
 
 const NavbarComponenet = () => {
   const navigate = useNavigate();
+  const[usercheck,setusercheck]= useState(false)
+
+  useEffect(()=>{
+    const current_user = JSON.parse(localStorage.getItem("current-user"))
+    if(current_user.role === 'admin'){
+      setusercheck(!usercheck)
+    }
+  },[])
 
   const logout = () => {
     localStorage.clear()
@@ -75,14 +83,14 @@ const NavbarComponenet = () => {
                   Team
                 </a>
               </li>
-              <li>
+              {usercheck?(<li>
                 <Link
                   to="/adminrole"
                   className="text-gray-900 dark:text-white hover:underline text-xl"
                 >
-                  Admin-Roles
+                  Manage-Users
                 </Link>
-              </li>
+              </li>):(<></>)}
             </ul>
           </div>
         </div>

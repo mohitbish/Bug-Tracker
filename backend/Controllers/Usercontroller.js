@@ -49,3 +49,29 @@ module.exports.getusers = async (req, res, next) => {
     next(ex);
   }
 };
+
+module.exports.updateuser = async (req, res, next) => {
+  try {
+    const update = await User.updateOne({_id: req.body.id}, {
+      $set: {
+        username: req.body.username,
+        email: req.body.email,
+        role: req.body.role
+      },
+    });
+    const users = await User.find();
+    return res.json({ status: true, users });
+  } catch (ex) {
+    next(ex);
+  }
+};
+
+module.exports.deleteuser = async (req, res, next) => {
+  try {
+    const deleteuser = await User.deleteOne({ _id:req.body.user._id});
+    const users = await User.find();
+    return res.json({ status: true, users });
+  } catch (ex) {
+    next(ex);
+  }
+};

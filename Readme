@@ -1,4 +1,4 @@
-Table pagination and search and sorting
+
 
 Bug Tracker
 
@@ -21,10 +21,12 @@ Bug Tracker
 #Users should be able to register with the bug tracker system.
 #Users should be able to sign in using their credentials (username/email and password).
 #only admin can add a user to admin role
-Admins should have unique privileges and access to administrative features.
+#Admins should have unique privileges and access to administrative features.
+
 Dashboard:
-Upon signing in, users and admins should be directed to their respective dashboards.
+#Upon signing in, users and admins should be directed to their respective dashboards.
 The dashboard should provide an overview of open/closed issues, assigned tasks, etc.
+
 Issue Management:
 Users should be able to create new bug reports or issues, providing detailed information.
 Users should be able to view, edit, and delete issues they have reported.

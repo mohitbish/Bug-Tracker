@@ -27,6 +27,23 @@ const Landing = () => {
   const demouserlogin = async () => {
     toast.success("Checking", toastOptions);
     const { data } = await axios.post(loginRoute, {
+      email: "u1@g.com",
+      password: "12345678",
+    });
+
+    if (data.status === false) {
+      toast.error(data.msg, toastOptions);
+    }
+    if (data.status === true) {
+      toast.success("loading", toastOptions);
+      localStorage.setItem("current-user", JSON.stringify(data.user));
+      navigate("/home");
+    }
+  };
+
+  const demoadminlogin = async () => {
+    toast.success("Checking", toastOptions);
+    const { data } = await axios.post(loginRoute, {
       email: "m@g.com",
       password: "12345678",
     });
@@ -45,7 +62,7 @@ const Landing = () => {
     <>
       <div className="realtive flex flex-row justify-between bg-blue-100 border-gray-200 dark:bg-gray-900">
         <DarkModeComponent />
-
+        {/* logo */}
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
           <a className="flex items-center">
             <svg
@@ -71,6 +88,7 @@ const Landing = () => {
           Register
         </h2>)}
         {formcheck ? <LoginForm /> : <RegisterForm />}
+        {/* buttons */}
         <div className="mt-10  flex flex-row px-2 py-4">
           {formcheck ? (
             <div className="flex flex-col my-2 mx-2">
@@ -117,6 +135,7 @@ const Landing = () => {
             </span>
             <button
               type="button"
+              onClick={() => demoadminlogin()}
               className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             >
               Admin
