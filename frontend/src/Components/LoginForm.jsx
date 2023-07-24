@@ -56,7 +56,7 @@ const Loginform = () => {
     <>
       <form 
       onSubmit={(event) => loginuser(event)}
-      className="w-2/5">
+      className="w-3/5">
         <div className="mb-6">
           <label
             htmlFor="email"

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import DarkModeComponent from "./DarkModeComponent";
 
 const NavbarComponenet = () => {
   const navigate = useNavigate();
@@ -21,8 +20,8 @@ const NavbarComponenet = () => {
   return (
     <div className="w-full flex flex-col">
       <div className="w-full relative flex flex-row">
-        <DarkModeComponent />
-        <nav className="w-full bg-white border-gray-200 dark:bg-gray-900">
+       
+        <nav className="w-full bg-blue-100 border-gray-200 dark:bg-gray-900">
           <div className="flex flex-row justify-between items-center  max-w-screen-xl p-4">
             <a className="flex items-center mr-12">
               <svg
@@ -56,14 +55,14 @@ const NavbarComponenet = () => {
           </div>
         </nav>
       </div>
-      <nav className="bg-gray-50 dark:bg-gray-700">
+      <nav className="bg-blue-100 dark:bg-gray-700">
         <div className="max-w-screen-xl px-4 py-3 mx-auto">
           <div className="flex items-center">
             <ul className="flex flex-row font-medium mt-0 mr-6 space-x-8 text-sm">
               <li>
                 <Link
                   to="/home"
-                  className="text-gray-900 dark:text-white hover:underline text-xl"
+                  className="text-gray-900 dark:text-white hover:underline font-bold text-xl"
                 >
                   Home
                 </Link>
@@ -71,24 +70,24 @@ const NavbarComponenet = () => {
               <li>
                 <a
                   href="#"
-                  className="text-gray-900 dark:text-white hover:underline text-xl"
+                  className="text-gray-900 dark:text-white font-bold hover:underline text-xl"
                 >
                   Company
                 </a>
               </li>
               <li>
-                <a
-                  href="#"
-                  className="text-gray-900 dark:text-white hover:underline text-xl"
-                >
-                  Team
-                </a>
+              <Link
+                    to="/projects"
+                    className="text-gray-900 dark:text-white font-bold hover:underline text-xl"
+                  >
+                    Projects
+                  </Link>
               </li>
               {usercheck ? (
                 <li>
                   <Link
                     to="/adminrole"
-                    className="text-gray-900 dark:text-white hover:underline text-xl"
+                    className="text-gray-900 dark:text-white font-bold hover:underline text-xl"
                   >
                     Manage-Users
                   </Link>

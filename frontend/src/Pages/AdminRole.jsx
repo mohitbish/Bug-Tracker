@@ -28,7 +28,7 @@ const AdminRole = () => {
   const [users, setusers] = useState([]);
   const [search, setsearch] = useState("");
   const [currentpage, setcureentpage] = useState(1);
-  const usersperspage = 9;
+  const usersperspage = 7;
   const lastindex = currentpage * usersperspage;
   const firstindex = lastindex - usersperspage;
   const records = users.slice(firstindex, lastindex);
@@ -96,7 +96,7 @@ const AdminRole = () => {
   };
 
   return (
-    <div className="h-screen bg-gray-50 dark:bg-gray-700">
+    <div className=" h-screen bg-blue-100 dark:bg-gray-700">
       <NavbarComponenet />
 
       <div className=" flex flex-col my-10 mx-4 items-center">
@@ -113,21 +113,20 @@ const AdminRole = () => {
             className="absolute right-0 top-0 text-xs dark:text-white"
           >
             <svg
-              className="w-6 h-6 text-gray-800 dark:text-white"
+              className="w-4 h-4 text-gray-800 dark:text-white"
               aria-hidden="true"
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
-              viewBox="0 0 14 10"
+              viewBox="0 0 14 14"
             >
               <path
                 stroke="currentColor"
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeWidth="2"
-                d="M13 5H1m0 0 4 4M1 5l4-4"
+                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
               />
             </svg>
-            List
           </button>
           <h1 className="text-2xl uppercase font-bold my-4 dark:text-white">
             update user
@@ -172,7 +171,7 @@ const AdminRole = () => {
                 Role
               </label>
               <select
-                id="countries"
+                id="roles"
                 onChange={(e) => setrole(e.target.value)}
                 placeholder={role}
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -195,14 +194,12 @@ const AdminRole = () => {
           className={
             editusercheck
               ? "hidden"
-              : " w-full relative overflow-x-auto shadow-md sm:rounded-lg"
+              : " w-full  relative overflow-x-auto shadow-md sm:rounded-lg"
           }
         >
-          <div className="pb-4 bg-white dark:bg-gray-900">
-            <label htmlFor="table-search" className="sr-only">
-              Search
-            </label>
-            <div className="relative flex flex-rows">
+          <div className="pb-4 bg-blue-100 dark:bg-gray-900">
+            {/* table header */}
+            <div className="relative flex flex-rows ">
               <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                 <svg
                   className="w-4 h-4 text-gray-500 dark:text-gray-400"
@@ -227,7 +224,7 @@ const AdminRole = () => {
                 className="block p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="Search for users"
               />
-              <h1 className="ml-20 mt-2 font-semibold text-left text-gray-900  dark:text-white ">
+              <h1 className="ml-80 mt-2 font-bold text-2xl text-gray-900  dark:text-white ">
                 User-List
               </h1>
             </div>
@@ -243,9 +240,6 @@ const AdminRole = () => {
                 </th>
                 <th scope="col" className="px-6 py-3">
                   <div className="flex items-center">Role</div>
-                </th>
-                <th scope="col" className="px-6 py-3">
-                  Action
                 </th>
                 <th scope="col" className="px-6 py-3">
                   Action
@@ -275,17 +269,45 @@ const AdminRole = () => {
                     <td className="px-6 py-4">
                       <button
                         onClick={() => edituserinfo(user)}
-                        className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                        className="text-xs mr-4"
                       >
-                        Edit
+                        <svg
+                          className="w-4 h-4 text-gray-800 dark:text-white"
+                          aria-hidden="true"
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 20 18"
+                        >
+                          <path
+                            stroke="currentColor"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
+                            d="M4.109 17H1v-2a4 4 0 0 1 4-4h.87M10 4.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Zm7.95 2.55a2 2 0 0 1 0 2.829l-6.364 6.364-3.536.707.707-3.536 6.364-6.364a2 2 0 0 1 2.829 0Z"
+                          />
+                        </svg>{" "}
+                        edit
                       </button>
-                    </td>
-                    <td className="px-6 py-4">
                       <button
                         onClick={() => deleteuserinfo(user)}
-                        className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                        className="font-xs"
                       >
-                        Delete
+                        <svg
+                          className="w-4 h-4 text-gray-800 dark:text-white"
+                          aria-hidden="true"
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 20 18"
+                        >
+                          <path
+                            stroke="currentColor"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
+                            d="M13 8h6m-9-3.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0ZM5 11h3a4 4 0 0 1 4 4v2H1v-2a4 4 0 0 1 4-4Z"
+                          />
+                        </svg>{" "}
+                        del
                       </button>
                     </td>
                   </tr>
@@ -319,7 +341,11 @@ const AdminRole = () => {
                 <li key={i}>
                   <a
                     onClick={() => changepage(n)}
-                    className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                    className={
+                      numbers.indexOf(n) + 1 == currentpage
+                        ? "flex items-center justify-center px-3 h-8 leading-tight text-black bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
+                        : "flex items-center justify-center px-3 h-8 leading-tight text-gray-400 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-500 dark:hover:bg-gray-700 dark:hover:text-white"
+                    }
                   >
                     {n}
                   </a>

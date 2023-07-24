@@ -5,3 +5,5 @@ export const loginRoute = `${host}/route/login`;
 export const getusers = `${host}/route/getusers`;
 export const updateuser = `${host}/route/updateuser`;
 export const deleteuser = `${host}/route/deleteuser`;
+export const addproject = `${host}/route/addproject`;
+export const getprojects = `${host}/route/getprojects`;

@@ -78,8 +78,8 @@ const RegisterForm = () => {
 
 <form 
       onSubmit={(event) => registeruser(event)}
-      className="w-2/5">
-      <div className="mb-6">
+      className="w-3/5 ">
+      <div className="mb-4">
           <label
             htmlFor="username"
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
@@ -95,7 +95,7 @@ const RegisterForm = () => {
             required
           />
         </div>
-        <div className="mb-6">
+        <div className="mb-4">
           <label
             htmlFor="email"
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
@@ -111,7 +111,7 @@ const RegisterForm = () => {
             required
           />
         </div>
-        <div className="mb-6">
+        <div className="mb-4">
           <label
             htmlFor="password"
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
@@ -126,7 +126,7 @@ const RegisterForm = () => {
             required
           />
         </div>
-        <div className="mb-6">
+        <div className="mb-4">
           <label
             htmlFor="password2"
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
