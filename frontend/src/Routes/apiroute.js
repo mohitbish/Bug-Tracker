@@ -7,3 +7,5 @@ export const updateuser = `${host}/route/updateuser`;
 export const deleteuser = `${host}/route/deleteuser`;
 export const addproject = `${host}/route/addproject`;
 export const getprojects = `${host}/route/getprojects`;
+export const updateprojectinfo = `${host}/route/updateprojectinfo`;
+export const getprojectinfo = `${host}/route/getprojectinfo`;

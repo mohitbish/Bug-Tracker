@@ -2,16 +2,16 @@ import React, { useState } from "react";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useNavigate} from "react-router-dom";
-import {registerRoute} from "../Routes/apiroute"
-
+import { useNavigate } from "react-router-dom";
+import { registerRoute } from "../Routes/apiroute";
 
 const RegisterForm = () => {
   const navigate = useNavigate();
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
   const [password2, setpassword2] = useState("");
-  const[username,setusename]=useState('')
+  const [username, setusename] = useState("");
+  const [title, settitle] = useState("");
 
   const toastOptions = {
     position: "top-right",
@@ -30,9 +30,9 @@ const RegisterForm = () => {
   const handlepassword2Change = (event) => {
     setpassword2(event.target.value);
   };
-  const handleusernameChange = (event)=>{
-    setusename(event.target.value)
-  }
+  const handleusernameChange = (event) => {
+    setusename(event.target.value);
+  };
 
   const inputvalidation = () => {
     if (password.length < 8) {
@@ -43,43 +43,41 @@ const RegisterForm = () => {
       toast.error("Passwords do not match", toastOptions);
       return false;
     }
+    if (title == "") {
+      toast.error("Please select title", toastOptions);
+      return false;
+    }
     return true;
   };
 
-  const registeruser = async(event) => {
-    event.preventDefault()
-    if(inputvalidation()){
-      toast.success("Registering",toastOptions)
+  const registeruser = async (event) => {
+    event.preventDefault();
+    if (inputvalidation()) {
+      toast.success("Registering", toastOptions);
       const { data } = await axios.post(registerRoute, {
         username,
         email,
         password,
-        role:"user"
+        role: "user",
+        title,
       });
 
       if (data.status === false) {
         toast.error(data.msg, toastOptions);
       }
       if (data.status === true) {
-        toast.success("Registering",toastOptions)
-        localStorage.clear()
-        localStorage.setItem(
-          "current-user",
-          JSON.stringify(data.user)
-        );
+        toast.success("Registering", toastOptions);
+        localStorage.clear();
+        localStorage.setItem("current-user", JSON.stringify(data.user));
         navigate("/home");
       }
     }
-    
   };
 
   return (
     <>
-
-<form 
-      onSubmit={(event) => registeruser(event)}
-      className="w-3/5 ">
-      <div className="mb-4">
+      <form onSubmit={(event) => registeruser(event)} className="w-3/5 ">
+        <div className="mb-2">
           <label
             htmlFor="username"
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
@@ -95,7 +93,7 @@ const RegisterForm = () => {
             required
           />
         </div>
-        <div className="mb-4">
+        <div className="mb-2">
           <label
             htmlFor="email"
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
@@ -111,7 +109,27 @@ const RegisterForm = () => {
             required
           />
         </div>
-        <div className="mb-4">
+        <div className="mb-2">
+          <label
+            htmlFor="email"
+            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+          >
+            Your Title
+          </label>
+          <select
+            id="title"
+            onChange={(e) => settitle(e.target.value)}
+            value={title}
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          >
+            <option value="">select title</option>
+            <option value="Designer">Designer</option>
+            <option value="Developer">Developer</option>
+            <option value="Product Manager">Product Manager</option>
+            <option value="Tester">Tester</option>
+          </select>
+        </div>
+        <div className="mb-2">
           <label
             htmlFor="password"
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
@@ -126,7 +144,7 @@ const RegisterForm = () => {
             required
           />
         </div>
-        <div className="mb-4">
+        <div className="mb-2">
           <label
             htmlFor="password2"
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
@@ -141,7 +159,7 @@ const RegisterForm = () => {
             required
           />
         </div>
-        
+
         <button
           type="submit"
           className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"

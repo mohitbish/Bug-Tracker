@@ -23,6 +23,11 @@ const userSchema = new mongoose.Schema({
     required: true,
     max: 10,
   },
+  title: {
+    type: String,
+    required: true,
+    max: 20,
+  },
 });
 
 module.exports = mongoose.model("Users", userSchema);

@@ -1,3 +1,4 @@
+const { Timestamp } = require("mongodb");
 const mongoose = require("mongoose");
 
 
@@ -24,6 +25,16 @@ const projectSchema = new mongoose.Schema({
   users: {
     type: Array,
   },
+  fulldate:{
+    type: String,
+  },
+  fulldate:{
+    type: String,
+  },
+  onlydate:{
+    type: String,
+  },
+  
 });
 
 module.exports = mongoose.model("Projects", projectSchema);

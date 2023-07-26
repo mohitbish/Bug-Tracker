@@ -6,7 +6,12 @@ const {
   deleteuser,
 } = require("./Controllers/Usercontroller");
 
-const { addproject, getprojects } = require("./Controllers/Projectcontroller");
+const {
+  addproject,
+  getprojects,
+  updateprojectinfo,
+  getprojectinfo,
+} = require("./Controllers/Projectcontroller");
 
 const router = require("express").Router();
 
@@ -17,4 +22,7 @@ router.post("/updateuser", updateuser);
 router.post("/deleteuser", deleteuser);
 router.post("/addproject", addproject);
 router.get("/getprojects", getprojects);
+router.post("/updateprojectinfo", updateprojectinfo);
+router.post("/getprojectinfo", getprojectinfo);
+
 module.exports = router;

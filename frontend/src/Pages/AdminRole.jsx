@@ -3,21 +3,9 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import NavbarComponenet from "../Components/Navbar";
-import { getusers } from "../Routes/apiroute";
-import { updateuser, deleteuser } from "../Routes/apiroute";
+import { getusers, updateuser, deleteuser } from "../Routes/apiroute";
 
 const AdminRole = () => {
-  useEffect(() => {
-    async function fetchUsers() {
-      let response = await axios.get(getusers);
-      if (response.data.status === false) {
-        toast.error(response.data.msg, toastOptions);
-      }
-      setusers(response.data.users);
-    }
-    fetchUsers();
-  }, []);
-
   const toastOptions = {
     position: "top-right",
     autoClose: 2000,
@@ -39,6 +27,18 @@ const AdminRole = () => {
   const [username, setusername] = useState("");
   const [email, seteamil] = useState("");
   const [role, setrole] = useState("");
+  const [title, settitle] = useState("");
+
+  useEffect(() => {
+    async function fetchUsers() {
+      let response = await axios.get(getusers);
+      if (response.data.status === false) {
+        toast.error(response.data.msg, toastOptions);
+      }
+      setusers(response.data.users);
+    }
+    fetchUsers();
+  }, []);
 
   const nextpage = () => {
     if (currentpage !== npage) {
@@ -59,6 +59,7 @@ const AdminRole = () => {
     setusername(user.username);
     seteamil(user.email);
     setrole(user.role);
+    settitle(user.title);
     seteditusercheck(!editusercheck);
   };
 
@@ -83,6 +84,7 @@ const AdminRole = () => {
       username,
       id,
       role,
+      title,
     });
 
     if (data.status === false) {
@@ -165,7 +167,7 @@ const AdminRole = () => {
             </div>
             <div className="mb-6">
               <label
-                htmlFor="countries"
+                htmlFor="roles"
                 className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
               >
                 Role
@@ -178,6 +180,46 @@ const AdminRole = () => {
               >
                 <option value="admin">admin</option>
                 <option value="user">user</option>
+              </select>
+            </div>
+            <div className="mb-6">
+              <label
+                htmlFor="titles"
+                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              >
+                Title
+              </label>
+              <select
+                id="titles"
+                onChange={(e) => settitle(e.target.value)}
+                placeholder={title}
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              >
+                <option value={title}>{title}</option>
+                <option
+                  value="Designer"
+                  className={title == "Designer" ? "hidden" : ""}
+                >
+                  Designer
+                </option>
+                <option
+                  value="Developer"
+                  className={title == "Developer" ? "hidden" : ""}
+                >
+                  Developer
+                </option>
+                <option
+                  value="Product Manager"
+                  className={title == "Product Manager" ? "hidden" : ""}
+                >
+                  Product Manager
+                </option>
+                <option
+                  value="Tester"
+                  className={title == "Tester" ? "hidden" : ""}
+                >
+                  Tester
+                </option>
               </select>
             </div>
 
@@ -242,6 +284,9 @@ const AdminRole = () => {
                   <div className="flex items-center">Role</div>
                 </th>
                 <th scope="col" className="px-6 py-3">
+                  <div className="flex items-center">Title</div>
+                </th>
+                <th scope="col" className="px-6 py-3">
                   Action
                 </th>
               </tr>
@@ -266,6 +311,7 @@ const AdminRole = () => {
                     </th>
                     <td className="px-6 py-4">{user.email}</td>
                     <td className="px-6 py-4">{user.role}</td>
+                    <td className="px-6 py-4">{user.title}</td>
                     <td className="px-6 py-4">
                       <button
                         onClick={() => edituserinfo(user)}

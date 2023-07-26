@@ -1,41 +1,51 @@
 import React, { useState } from "react";
-import{addproject} from "../Routes/apiroute"
+import { addproject } from "../Routes/apiroute";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const NewProject = (props) => {
-console.log(props)
   const [name, setname] = useState("");
   const [status, setstatus] = useState("on-going");
   const [priority, setpriority] = useState("low");
+  const date  = new Date();
+  const onlydate = `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`
+  console.log(typeof(onlydate))
+  const fulldate = date.toString()
+
   const toastOptions = {
     position: "top-right",
-    autoClose: 5000,
+    autoClose: 2000,
     pauseOnHover: true,
     draggable: true,
     theme: "light",
   };
 
-
-  const handlesubmit= async (event)=>{
+  const handlesubmit = async (event) => {
     event.preventDefault();
     const { data } = await axios.post(addproject, {
-        name,
-        status,
-        priority
+      name,
+      status,
+      priority,
+      onlydate,
+      fulldate   
+    });
+    if (data.status === false) {
+      toast.error(data.msg, toastOptions);
+    }
+    if (data.status === true) {
+      setstatus("on-going");
+      setname("");
+      setpriority("low");
+      const sortedarry = data.projects.sort(function (a, b) {
+        var c = new Date(a.fulldate);
+        var d = new Date(b.fulldate);
+        return d - c;
       });
 
-      if (data.status === false) {
-        toast.error(data.msg, toastOptions);
-      }
-      if (data.status === true) {
-        setstatus('on-going')
-        setname('')
-        setpriority("low")
-        props.onChange({value: data.projects, check:false})
-      }
-  }
+      props.onChange({ value:sortedarry , check: false });
+    }
+  };
 
   return (
     <>
@@ -43,9 +53,7 @@ console.log(props)
         New-Project
       </h1>
 
-      <form onSubmit={(e) => handlesubmit(e)}
-        className="w-full"
-      >
+      <form onSubmit={(e) => handlesubmit(e)} className="w-full">
         <div className="mb-6">
           <label
             htmlFor="name"

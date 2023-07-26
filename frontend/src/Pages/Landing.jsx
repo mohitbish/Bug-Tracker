@@ -61,7 +61,7 @@ const Landing = () => {
     <div className="w-full h-screen flex flex-col items-center bg-white border-gray-200 dark:bg-gray-900">
       <div className="realtive flex flex-row  justify-between bg-white border-gray-200 dark:bg-gray-900 mb-10">     
         {/* logo */}
-        <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+        <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto">
           <a className="flex items-center">
             <svg
               className="w-6 h-6 text-gray-800 dark:text-white mx-2"
@@ -79,7 +79,7 @@ const Landing = () => {
         </div>
       </div>
       {/* form and buttons */}
-      <div className="w-3/5  bg-blue-100 dark:bg-gray-600 flex flex-col items-center pt-10">
+      <div className="w-3/5  bg-blue-100 dark:bg-gray-600 flex flex-col items-center ">
         {formcheck?(<h2 className="text-2xl text:black dark:text-white uppercase font-bold mb-10">
           Login
         </h2>):(<h2 className="text-2xl text:black dark:text-white uppercase font-bold mb-10">

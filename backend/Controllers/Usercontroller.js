@@ -3,7 +3,7 @@ const User = require("../Models/User");
 
 module.exports.register = async (req, res, next) => {
   try {
-    const { username, email, password, role } = req.body;
+    const { username, email, password, role, title } = req.body;
     const emailCheck = await User.findOne({ email });
     if (emailCheck)
       return res.json({ msg: "Email already used", status: false });
@@ -17,6 +17,7 @@ module.exports.register = async (req, res, next) => {
       email,
       password: hashedPassword,
       role,
+      title
     });
     delete user.password;
     return res.json({ status: true, user });
@@ -56,7 +57,8 @@ module.exports.updateuser = async (req, res, next) => {
       $set: {
         username: req.body.username,
         email: req.body.email,
-        role: req.body.role
+        role: req.body.role,
+        title: req.body.title
       },
     });
     const users = await User.find();
