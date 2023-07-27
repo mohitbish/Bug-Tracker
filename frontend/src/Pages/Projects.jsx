@@ -8,6 +8,7 @@ import { getprojects } from "../Routes/apiroute";
 import { useNavigate } from "react-router-dom";
 
 const Projects = () => {
+
   const navigate = useNavigate();
   const [usercheck, setusercheck] = useState(false);
   const [addnewproject, setaddnewproject] = useState(false);
@@ -77,10 +78,10 @@ const Projects = () => {
   };
 
   return (
-    <div className="relative w-full h-screen bg-blue-100 dark:bg-gray-700">
+    <div className="w-full min-h-screen bg-blue-100 dark:bg-gray-700">
       <NavbarComponenet />
 
-      <div className="w-full flex flex-row justify-around">
+      <div className="w-full  flex flex-row justify-around">
         {/* projects table */}
         <div className={addnewproject ? "w-1/2 mt-10" : "w-full mx-10 mt-10"}>
           <h1 className="text-center my-2 font-bold  text-gray-900  dark:text-white ">

@@ -10,7 +10,6 @@ const NewProject = (props) => {
   const [priority, setpriority] = useState("low");
   const date  = new Date();
   const onlydate = `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`
-  console.log(typeof(onlydate))
   const fulldate = date.toString()
 
   const toastOptions = {

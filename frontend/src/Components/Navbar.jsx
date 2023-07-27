@@ -72,7 +72,7 @@ const NavbarComponenet = () => {
                   href="#"
                   className="text-gray-900 dark:text-white font-bold hover:underline text-xl"
                 >
-                  Company
+                  Tickets
                 </a>
               </li>
               <li>

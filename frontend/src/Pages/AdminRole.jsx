@@ -98,7 +98,7 @@ const AdminRole = () => {
   };
 
   return (
-    <div className=" h-screen bg-blue-100 dark:bg-gray-700">
+    <div className="w-full min-h-screen bg-blue-100 dark:bg-gray-700">
       <NavbarComponenet />
 
       <div className=" flex flex-col my-10 mx-4 items-center">
@@ -236,7 +236,7 @@ const AdminRole = () => {
           className={
             editusercheck
               ? "hidden"
-              : " w-full  relative overflow-x-auto shadow-md sm:rounded-lg"
+              : " w-full relative overflow-x-auto shadow-md sm:rounded-lg"
           }
         >
           <div className="pb-4 bg-blue-100 dark:bg-gray-900">

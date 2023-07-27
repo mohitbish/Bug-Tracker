@@ -11,6 +11,8 @@ const {
   getprojects,
   updateprojectinfo,
   getprojectinfo,
+  addusertoproject,
+  removeformproject,deleteproject
 } = require("./Controllers/Projectcontroller");
 
 const router = require("express").Router();
@@ -24,5 +26,10 @@ router.post("/addproject", addproject);
 router.get("/getprojects", getprojects);
 router.post("/updateprojectinfo", updateprojectinfo);
 router.post("/getprojectinfo", getprojectinfo);
+router.post("/addusertoproject", addusertoproject);
+router.post("/removeformproject", removeformproject)
+router.post("/deleteproject", deleteproject)
+
 
 module.exports = router;
+

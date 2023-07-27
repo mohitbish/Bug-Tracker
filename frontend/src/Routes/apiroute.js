@@ -9,3 +9,6 @@ export const addproject = `${host}/route/addproject`;
 export const getprojects = `${host}/route/getprojects`;
 export const updateprojectinfo = `${host}/route/updateprojectinfo`;
 export const getprojectinfo = `${host}/route/getprojectinfo`;
+export const addusertoproject = `${host}/route/addusertoproject`;
+export const removeformproject= `${host}/route/removeformproject`;
+export const deleteproject= `${host}/route/deleteproject`;

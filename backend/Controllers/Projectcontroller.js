@@ -55,3 +55,45 @@ module.exports.getprojectinfo = async (req, res, next) => {
   }
 };
 
+
+module.exports.addusertoproject = async (req, res, next) => {
+  try {
+    const userlist = req.body.userlist
+    const user = req.body.user
+    await userlist.push(user)
+    const update = await Project.updateOne({name: req.body.name}, {
+      $set: {
+        users: userlist,
+      },
+    });
+    const project = await Project.find({name: req.body.name})
+    return res.json({ status: true, projectinfo: project});
+  } catch (ex) {
+    next(ex);
+  }
+};
+
+module.exports.removeformproject = async (req, res, next) => {
+  try {
+    const userlist = req.body.userlist
+    await userlist.splice(req.body.userindex,1)
+    const update = await Project.updateOne({name: req.body.name}, {
+      $set: {
+        users: userlist,
+      },
+    });
+    const project = await Project.find({name: req.body.name})
+    return res.json({ status: true, projectinfo: project});
+  } catch (ex) {
+    next(ex);
+  }
+};
+
+module.exports.deleteproject = async (req, res, next) => {
+  try {
+    const deleteproj = await Project.deleteOne({ _id:req.body.id});
+    return res.json({ status: true });
+  } catch (ex) {
+    next(ex);
+  }
+};
