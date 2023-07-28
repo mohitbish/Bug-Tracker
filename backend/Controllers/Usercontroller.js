@@ -68,11 +68,29 @@ module.exports.updateuser = async (req, res, next) => {
   }
 };
 
+
 module.exports.deleteuser = async (req, res, next) => {
   try {
     const deleteuser = await User.deleteOne({ _id:req.body.user._id});
     const users = await User.find();
     return res.json({ status: true, users });
+  } catch (ex) {
+    next(ex);
+  }
+};
+
+module.exports.updateprofile = async (req, res, next) => {
+  try {
+    const update = await User.updateOne({_id: req.body.id}, {
+      $set: {
+        username: req.body.username,
+        email: req.body.email,
+        role: req.body.role,
+        title: req.body.title
+      },
+    });
+    const user = await User.find({_id: req.body.id});
+    return res.json({ status: true, user });
   } catch (ex) {
     next(ex);
   }

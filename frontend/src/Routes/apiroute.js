@@ -12,3 +12,5 @@ export const getprojectinfo = `${host}/route/getprojectinfo`;
 export const addusertoproject = `${host}/route/addusertoproject`;
 export const removeformproject= `${host}/route/removeformproject`;
 export const deleteproject= `${host}/route/deleteproject`;
+export const updateprofile= `${host}/route/updateprofile`;
+

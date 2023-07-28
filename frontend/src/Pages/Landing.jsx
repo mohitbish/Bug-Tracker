@@ -24,7 +24,6 @@ const Landing = () => {
   };
 
   const demouserlogin = async () => {
-    toast.success("Checking", toastOptions);
     const { data } = await axios.post(loginRoute, {
       email: "u1@g.com",
       password: "12345678",
@@ -41,7 +40,6 @@ const Landing = () => {
   };
 
   const demoadminlogin = async () => {
-    toast.success("Checking", toastOptions);
     const { data } = await axios.post(loginRoute, {
       email: "m@g.com",
       password: "12345678",

@@ -4,6 +4,7 @@ const {
   getusers,
   updateuser,
   deleteuser,
+  updateprofile
 } = require("./Controllers/Usercontroller");
 
 const {
@@ -12,7 +13,8 @@ const {
   updateprojectinfo,
   getprojectinfo,
   addusertoproject,
-  removeformproject,deleteproject
+  removeformproject,
+  deleteproject,
 } = require("./Controllers/Projectcontroller");
 
 const router = require("express").Router();
@@ -27,9 +29,8 @@ router.get("/getprojects", getprojects);
 router.post("/updateprojectinfo", updateprojectinfo);
 router.post("/getprojectinfo", getprojectinfo);
 router.post("/addusertoproject", addusertoproject);
-router.post("/removeformproject", removeformproject)
-router.post("/deleteproject", deleteproject)
-
+router.post("/removeformproject", removeformproject);
+router.post("/deleteproject", deleteproject);
+router.post("/updateprofile", updateprofile);
 
 module.exports = router;
-

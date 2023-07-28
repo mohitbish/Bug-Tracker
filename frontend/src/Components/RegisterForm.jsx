@@ -53,7 +53,6 @@ const RegisterForm = () => {
   const registeruser = async (event) => {
     event.preventDefault();
     if (inputvalidation()) {
-      toast.success("Registering", toastOptions);
       const { data } = await axios.post(registerRoute, {
         username,
         email,

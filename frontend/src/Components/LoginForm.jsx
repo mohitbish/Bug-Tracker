@@ -36,7 +36,6 @@ const Loginform = () => {
   const loginuser = async (event) => {
     event.preventDefault();
     if (inputvalidation()) {
-      toast.success("Checking", toastOptions);
       const { data } = await axios.post(loginRoute, {
         email,
         password,

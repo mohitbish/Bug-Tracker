@@ -39,7 +39,7 @@ const NavbarComponenet = () => {
             </a>
             <div className="flex items-center px-10">
               <button
-                
+                onClick={()=>{navigate('/profile')}}
                 className=" text-blue-600 dark:text-blue-500 hover:underline mx-4"
               >
                 Profile

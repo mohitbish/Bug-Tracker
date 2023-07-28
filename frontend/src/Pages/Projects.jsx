@@ -8,11 +8,10 @@ import { getprojects } from "../Routes/apiroute";
 import { useNavigate } from "react-router-dom";
 
 const Projects = () => {
-
   const navigate = useNavigate();
   const [usercheck, setusercheck] = useState(false);
   const [addnewproject, setaddnewproject] = useState(false);
-  const [projects, setProjects] = useState([{}]);
+  const [projects, setProjects] = useState([]);
   const [projectdata, setprojectdata] = useState({});
   const [search, setsearch] = useState("");
   const [currentpage, setcureentpage] = useState(1);
@@ -39,7 +38,25 @@ const Projects = () => {
         var d = new Date(b.fulldate);
         return d - c;
       });
-      setProjects(sortedarry);
+
+      if (current_user.role === "user") {
+        const a1 = [];
+        const a2 = [];
+        sortedarry.forEach((element) => {
+          const new_array = element.users;
+          new_array.map((e) => {
+            if (e._id == current_user._id) {
+              a1.push(element);
+            }
+          });
+        });
+        for (let item of a1) {
+          if (!a2.includes(item)) a2.push(item);
+        }
+        setProjects(a2)
+      } else {
+        setProjects(sortedarry);
+      }
     }
     fetchdata();
   }, []);
@@ -53,7 +70,7 @@ const Projects = () => {
   };
 
   const handlechange = (data) => {
-    setProjects(data.value);
+    setProjects(data.value); 
     setaddnewproject(data.check);
   };
 
