@@ -68,12 +68,12 @@ const NavbarComponenet = () => {
                 </Link>
               </li>
               <li>
-                <a
-                  href="#"
-                  className="text-gray-900 dark:text-white font-bold hover:underline text-xl"
-                >
-                  Tickets
-                </a>
+              <Link
+                    to="/tickets"
+                    className="text-gray-900 dark:text-white font-bold hover:underline text-xl"
+                  >
+                    Tickets
+                  </Link>
               </li>
               <li>
               <Link

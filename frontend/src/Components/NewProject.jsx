@@ -91,7 +91,7 @@ const NewProject = (props) => {
             htmlFor="priority"
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
           >
-            Role
+            Priority
           </label>
           <select
             id="status"
