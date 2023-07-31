@@ -8,7 +8,7 @@ const ticketSchema = new mongoose.Schema({
     unique: true,
     max: 50,
   },
-  category: {
+  title: {
     type: String,
     required: true,
     max: 50,
@@ -29,9 +29,13 @@ const ticketSchema = new mongoose.Schema({
   fulldate:{
     type: String,
   },
-  file:{
-    type: Buffer,
-  }
+  onlydate:{
+    type: String,
+  },
+  file: {
+    type: String,
+    required:true,
+  },
 
 });
 

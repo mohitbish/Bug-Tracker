@@ -1,10 +1,12 @@
+const upload = require("./multer");
+
 const {
   register,
   login,
   getusers,
   updateuser,
   deleteuser,
-  updateprofile
+  updateprofile,
 } = require("./Controllers/Usercontroller");
 
 const {
@@ -16,6 +18,8 @@ const {
   removeformproject,
   deleteproject,
 } = require("./Controllers/Projectcontroller");
+
+const { addticket,gettickets} = require("./Controllers/TicketController");
 
 const router = require("express").Router();
 
@@ -32,5 +36,6 @@ router.post("/addusertoproject", addusertoproject);
 router.post("/removeformproject", removeformproject);
 router.post("/deleteproject", deleteproject);
 router.post("/updateprofile", updateprofile);
-
+router.post("/addticket",upload.single('file'), addticket);
+router.get("/gettickets", gettickets);
 module.exports = router;
