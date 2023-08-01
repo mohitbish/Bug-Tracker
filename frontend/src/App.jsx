@@ -10,6 +10,7 @@ import DarkModeComponent from "./Components/DarkModeComponent";
 import ProjectDetail from "./Pages/ProjectDetail";
 import Profile from "./Pages/Profile";
 import Tickets from "./Pages/Tickets";
+import TicketDetail from "./Pages/TicketDetail";
 
 function App() {
   return (
@@ -23,7 +24,8 @@ function App() {
           <Route path="/projects" element={<Projects />} />
           <Route path="/projectdetail" element={<ProjectDetail />} />
           <Route path="/profile" element={<Profile />} />
-          <Route path="/tickets" element={<Tickets />} />
+          <Route path="/tickets" element={<Tickets />} /> 
+          <Route path="/ticketdetail" element={<TicketDetail />} />
         </Routes>
       </BrowserRouter>
       <ToastContainer />

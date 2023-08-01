@@ -5,8 +5,10 @@ import Newticket from "../Components/Newticket";
 import { gettickets, getprojects } from "../Routes/apiroute";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
 
 const Tickets = () => {
+  const navigate = useNavigate()
   const [newticketcheck, setnewticketcheck] = useState(false);
   const [tickets, settickets] = useState([]);
   const [currentpage, setcureentpage] = useState(1);
@@ -118,6 +120,12 @@ const Tickets = () => {
     setnewticketcheck(data.check);
   };
 
+  const showticket=(ticket)=>{
+    localStorage.removeItem('current-ticket')
+    localStorage.setItem('current-ticket', JSON.stringify(ticket))
+    navigate('/ticketdetail')
+  }
+
   return (
     <div className="h-screen bg-blue-100 dark:bg-gray-700">
       <NavbarComponenet />
@@ -155,7 +163,7 @@ const Tickets = () => {
             <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
               <tr>
                 <th scope="col" className="px-6 py-3">
-                  Category
+                  Title
                 </th>
                 <th scope="col" className="px-6 py-3">
                   Project
@@ -164,7 +172,7 @@ const Tickets = () => {
                   Status
                 </th>
                 <th scope="col" className="px-6 py-3">
-                  Date
+                  Issued on
                 </th>
 
                 <th scope="col" className="px-6 py-3">
@@ -176,7 +184,7 @@ const Tickets = () => {
               </tr>
             </thead>
             <tbody>
-              {tickets.map((ticket, tid) => (
+              {records.map((ticket, tid) => (
                 <tr
                   key={tid}
                   className="bg-white border-b dark:bg-gray-900 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
@@ -191,13 +199,13 @@ const Tickets = () => {
                   <td className="px-6 py-4">{ticket.status}</td>
                   <td className="px-6 py-4">{ticket.onlydate}</td>
                   <td className="px-6 py-4">{ticket.user}</td>
-                  <td className="px-6 py-4 text-right">
-                    <a
-                      href="#"
+                  <td className="px-6 py-4">
+                    <button
+                      onClick={() => showticket(ticket)}
                       className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
                     >
-                      Edit
-                    </a>
+                      Details
+                    </button>
                   </td>
                 </tr>
               ))}

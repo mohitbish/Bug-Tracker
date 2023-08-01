@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import NavbarComponenet from "../Components/Navbar";
 import axios from "axios";
 import { toast } from "react-toastify";
-import {  updateprofile } from "../Routes/apiroute";
+import { updateprofile } from "../Routes/apiroute";
 
 const Profile = () => {
   const [id, setid] = useState("");
@@ -10,6 +10,7 @@ const Profile = () => {
   const [email, seteamil] = useState("");
   const [role, setrole] = useState("");
   const [title, settitle] = useState("");
+  const [admincheck, setadmincheck] = useState(false);
 
   const toastOptions = {
     position: "top-right",
@@ -26,9 +27,12 @@ const Profile = () => {
       setid(user._id);
       setrole(user.role);
       settitle(user.title);
-      setusername(user.username)
+      setusername(user.username);
+      if (user.role == "admin") {
+        setadmincheck(true);
+      }
     }
-    fetchdata()
+    fetchdata();
   }, []);
 
   const updateuserinfo = async (event) => {
@@ -46,31 +50,28 @@ const Profile = () => {
     }
     if (data.status === true) {
       toast.success("updated", toastOptions);
-      const user = data.user
-      console.log(user[0])
+      const user = data.user;
+      console.log(user[0]);
       seteamil(user[0].email);
       setid(user[0]._id);
       setrole(user[0].role);
       settitle(user[0].title);
-      setusername(user[0].username)
-      localStorage.removeItem('current-user')
-      localStorage.setItem('current-user', JSON.stringify(data.user[0]))
+      setusername(user[0].username);
+      localStorage.removeItem("current-user");
+      localStorage.setItem("current-user", JSON.stringify(data.user[0]));
     }
   };
 
   return (
-    <div className="h-screen bg-gray-50 dark:bg-gray-700">
+    <div className="h-screen bg-blue-100 dark:bg-gray-700">
       <NavbarComponenet />
 
       <div className="relative flex flex-col items-center justify-center w-ful pt-10">
-       
         <h1 className="text-2xl uppercase font-bold my-4 dark:text-white">
           Edit info
         </h1>
 
-        <form onSubmit={(e) => updateuserinfo(e)}
-          className="w-2/5"
-        >
+        <form onSubmit={(e) => updateuserinfo(e)} className="w-2/5">
           <div className="mb-6">
             <label
               htmlFor="email"
@@ -101,24 +102,35 @@ const Profile = () => {
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             />
           </div>
-          <div className="mb-6">
-            <label
-              htmlFor="roles"
-              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-            >
-              Role
-            </label>
-            <select
-              id="roles"
-              onChange={(e) => setrole(e.target.value)}
-              placeholder={role || ""}
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            >
+          {admincheck ? (
+            <div className="mb-6">
+              <label
+                htmlFor="roles"
+                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              >
+                Role
+              </label>
+              <select
+                id="roles"
+                onChange={(e) => setrole(e.target.value)}
+                placeholder={role || ""}
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              >
                 <option value={role}>{role}</option>
-                <option value="admin" className={role == "admin"?("hidden"):("")}>admin</option>
-                <option value="user" className={role == "user"?("hidden"):("")}>user</option>
-            </select>
-          </div>
+                <option
+                  value="admin"
+                  className={role == "admin" ? "hidden" : ""}
+                >
+                  admin
+                </option>
+                <option value="user" className={role == "user" ? "hidden" : ""}>
+                  user
+                </option>
+              </select>
+            </div>
+          ) : (
+            <></>
+          )}
           <div className="mb-6">
             <label
               htmlFor="titles"

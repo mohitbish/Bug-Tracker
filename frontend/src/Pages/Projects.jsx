@@ -174,6 +174,9 @@ const Projects = () => {
                     Priority
                   </th>
                   <th scope="col" className="px-6 py-3">
+                    Added on
+                  </th>
+                  <th scope="col" className="px-6 py-3">
                     Action
                   </th>
                 </tr>
@@ -198,6 +201,7 @@ const Projects = () => {
                       </th>
                       <td className="px-6 py-4">{proj.status}</td>
                       <td className="px-6 py-4">{proj.priority}</td>
+                      <td className="px-6 py-4">{proj.onlydate}</td>
                       <td className="px-6 py-4">
                         <a
                           onClick={() => setprojectdetail(proj)}

@@ -22,7 +22,7 @@ const NavbarComponenet = () => {
       <div className="w-full relative flex flex-row">
        
         <nav className="w-full bg-blue-100 border-gray-200 dark:bg-gray-900">
-          <div className="flex flex-row justify-between items-center  max-w-screen-xl p-4">
+          <div className="flex flex-row justify-between items-center p-4">
             <a className="flex items-center mr-12">
               <svg
                 className="w-6 h-6 text-gray-800 dark:text-white mx-2"
@@ -40,14 +40,14 @@ const NavbarComponenet = () => {
             <div className="flex items-center px-10">
               <button
                 onClick={()=>{navigate('/profile')}}
-                className=" text-blue-600 dark:text-blue-500 hover:underline mx-4"
+                className="text-blue-600 dark:text-blue-500 hover:underline mx-4"
               >
                 Profile
               </button>
 
               <button
                 onClick={() => logout()}
-                className=" text-blue-600 dark:text-blue-500 hover:underline"
+                className="text-blue-600 dark:text-blue-500 hover:underline"
               >
                 Logout
               </button>
