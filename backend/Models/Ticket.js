@@ -2,18 +2,15 @@ const { Timestamp } = require("mongodb");
 const mongoose = require("mongoose");
 
 const ticketSchema = new mongoose.Schema({
-  comment: {
-    type: String,
-    required: true,
-    unique: true,
-    max: 50,
+  comments: {
+    type: Array
   },
   title: {
     type: String,
     required: true,
     max: 50,
   },
-  priority: {
+  status: {
     type: String,
     required: true,
     max: 50,
@@ -34,7 +31,6 @@ const ticketSchema = new mongoose.Schema({
   },
   file: {
     type: String,
-    required:true,
   },
 
 });

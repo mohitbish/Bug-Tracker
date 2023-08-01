@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import NavbarComponenet from "../Components/Navbar";
 import Newticket from "../Components/Newticket";
-import { gettickets } from "../Routes/apiroute";
+import { gettickets, getprojects } from "../Routes/apiroute";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -26,7 +26,8 @@ const Tickets = () => {
   };
 
   useEffect(() => {
-    async function fetchtickets() {
+    const current_user = JSON.parse(localStorage.getItem("current-user"));
+    async function fetchalltickets() {
       const { data } = await axios.get(gettickets);
       if (data.status === false) {
         toast.error(data.msg, toastOptions);
@@ -36,8 +37,38 @@ const Tickets = () => {
         //sort and filter by user
       }
     }
-    fetchtickets()
-  },[]);
+    async function fetchprojecttickets() {
+      let response = await axios.get(getprojects);
+      if (response.data.status === false) {
+        toast.error(response.data.msg, toastOptions);
+      }
+      const a1 = [];
+      const a2 = [];
+      response.data.projects.forEach((element) => {
+        const new_array = element.users;
+        new_array.map((e) => {
+          if (e._id == current_user._id) {
+            a1.push(element);
+          }
+        });
+      });
+      for (let item of a1) {
+        if (!a2.includes(item)) a2.push(item);
+      }
+      const ticketlist = [];
+      a2.map((p) => {
+        p.tickets.map((t) => {
+          ticketlist.push(t);
+        });
+      });
+      settickets(ticketlist);
+    }
+    if (current_user.role == "admin") {
+      fetchalltickets();
+    } else {
+      fetchprojecttickets();
+    }
+  }, []);
 
   const nextpage = () => {
     if (currentpage !== npage) {
@@ -53,8 +84,37 @@ const Tickets = () => {
     setcureentpage(id);
   };
 
-  const handlechange = (data) => {
-    settickets(data.value);
+  const handlechange = async (data) => {
+    const current_user = JSON.parse(localStorage.getItem("current-user"));
+    if (current_user.role == "admin") {
+      settickets(data.value);
+    } else {
+      let response = await axios.get(getprojects);
+      if (response.data.status === false) {
+        toast.error(response.data.msg, toastOptions);
+      }
+      const a1 = [];
+      const a2 = [];
+      response.data.projects.forEach((element) => {
+        const new_array = element.users;
+        new_array.map((e) => {
+          if (e._id == current_user._id) {
+            a1.push(element);
+          }
+        });
+      });
+      for (let item of a1) {
+        if (!a2.includes(item)) a2.push(item);
+      }
+      const ticketlist = [];
+      a2.map((p) => {
+        p.tickets.map((t) => {
+          ticketlist.push(t);
+        });
+      });
+      settickets(ticketlist);
+    }
+
     setnewticketcheck(data.check);
   };
 
@@ -101,7 +161,7 @@ const Tickets = () => {
                   Project
                 </th>
                 <th scope="col" className="px-6 py-3">
-                  Priority
+                  Status
                 </th>
                 <th scope="col" className="px-6 py-3">
                   Date
@@ -128,7 +188,7 @@ const Tickets = () => {
                     {ticket.title}
                   </th>
                   <td className="px-6 py-4">{ticket.projectname}</td>
-                  <td className="px-6 py-4">{ticket.priority}</td>
+                  <td className="px-6 py-4">{ticket.status}</td>
                   <td className="px-6 py-4">{ticket.onlydate}</td>
                   <td className="px-6 py-4">{ticket.user}</td>
                   <td className="px-6 py-4 text-right">

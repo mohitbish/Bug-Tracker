@@ -19,7 +19,7 @@ const {
   deleteproject,
 } = require("./Controllers/Projectcontroller");
 
-const { addticket,gettickets} = require("./Controllers/TicketController");
+const { addticket,gettickets, addticketwithfile} = require("./Controllers/TicketController");
 
 const router = require("express").Router();
 
@@ -36,6 +36,9 @@ router.post("/addusertoproject", addusertoproject);
 router.post("/removeformproject", removeformproject);
 router.post("/deleteproject", deleteproject);
 router.post("/updateprofile", updateprofile);
-router.post("/addticket",upload.single('file'), addticket);
+router.post("/addticket", addticket);
+router.post("/addticketwithfile",upload.single('file'), addticketwithfile);
 router.get("/gettickets", gettickets);
+
+
 module.exports = router;

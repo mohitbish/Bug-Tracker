@@ -15,5 +15,5 @@ export const deleteproject= `${host}/route/deleteproject`;
 export const updateprofile= `${host}/route/updateprofile`;
 export const addticket= `${host}/route/addticket`;
 export const gettickets= `${host}/route/gettickets`;
-
+export const addticketwithfile= `${host}/route/addticketwithfile`;
 
