@@ -194,7 +194,7 @@ const Newticket = (props) => {
             htmlFor="priority"
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
           >
-            Priority
+            Status
           </label>
           <select
             id="priority"

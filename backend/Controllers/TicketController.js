@@ -84,3 +84,50 @@ module.exports.addticket = async (req, res, next) => {
     next(ex);
   }
 };
+
+module.exports.addnewcomment = async (req, res, next) => {
+  try {
+    const projdata = await Project.find({ name: req.body.projectname });
+    const newcomment = {
+      comment: req.body.newcomment,
+      user: req.body.user,
+      date: req.body.fulldate,
+    };
+    let ticketlist = projdata[0].tickets;
+    let commentlist = [];
+    ticketlist.map((t) => {
+      if (t.title == req.body.title) {
+        commentlist = t.comments;
+      }
+    });
+    commentlist.push(newcomment);
+    ticketlist.map((t) => {
+      if (t.title == req.body.title) {
+        t.comments = commentlist;
+      }
+    });
+    const addtoproject = await Project.updateOne(
+      { name: req.body.projectname },
+      {
+        $set: {
+          tickets: ticketlist,
+        },
+      }
+    );
+    const ticketdata = await Ticket.find({ title: req.body.title });
+    let commentdata = [];
+    commentdata = ticketdata[0].comments;
+    commentdata.push(newcomment);
+    const updateticket = await Ticket.updateOne(
+      { title: req.body.title },
+      {
+        $set: {
+          comments: commentdata,
+        },
+      }
+    );
+    return res.json({ status: true, commentdata });
+  } catch (ex) {
+    next(ex);
+  }
+};
