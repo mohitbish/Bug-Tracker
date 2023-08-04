@@ -4,12 +4,17 @@ import NavbarComponenet from "../Components/Navbar";
 import ProjectUsers from "../Components/ProjectUsers";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { updateprojectinfo, getprojectinfo,deleteproject } from "../Routes/apiroute";
+import {
+  updateprojectinfo,
+  getprojectinfo,
+  deleteproject,
+} from "../Routes/apiroute";
 import { useNavigate } from "react-router-dom";
 import ProjectTickets from "../Components/ProjectTickets";
 
 const ProjectDetail = (projectdata) => {
   const navigate = useNavigate();
+  const [usercheck, setusercheck] = useState(false);
   const [project, setproject] = useState({});
   const [name, setname] = useState("");
   const [id, setid] = useState("");
@@ -31,8 +36,11 @@ const ProjectDetail = (projectdata) => {
 
   useEffect(() => {
     async function fetchoneproject() {
+      const current_user = JSON.parse(localStorage.getItem("current-user"));
+      if (current_user.role === "admin") {
+        setusercheck(!usercheck);
+      }
       const projid = await JSON.parse(localStorage.getItem("current-project"));
-
       const { data } = await axios.post(getprojectinfo, {
         id: projid._id,
       });
@@ -77,7 +85,7 @@ const ProjectDetail = (projectdata) => {
     }
   };
 
-  const handledeleteproject =async()=>{
+  const handledeleteproject = async () => {
     const { data } = await axios.post(deleteproject, {
       id,
     });
@@ -87,9 +95,9 @@ const ProjectDetail = (projectdata) => {
     }
     if (data.status === true) {
       toast.success("deleted", toastOptions);
-      navigate('/projects')
+      navigate("/projects");
     }
-  }
+  };
 
   return (
     <div className="relative w-full h-screen bg-blue-100 dark:bg-gray-700">
@@ -149,7 +157,7 @@ const ProjectDetail = (projectdata) => {
                 htmlFor="status"
                 className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
               >
-                Role
+                Status
               </label>
               <select
                 id="status"
@@ -185,7 +193,7 @@ const ProjectDetail = (projectdata) => {
                 type="button"
                 onClick={() => {
                   setuserlist(true);
-                  settickelist(false)
+                  settickelist(false);
                 }}
                 className=" w-full flex-row justify-between bg-gray-50 border border-gray-300 text-gray-900 font-sm rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-500"
               >
@@ -212,7 +220,7 @@ const ProjectDetail = (projectdata) => {
                 type="button"
                 onClick={() => {
                   setuserlist(false);
-                  settickelist(true)
+                  settickelist(true);
                 }}
                 className=" w-full flex-row justify-between bg-gray-50 border border-gray-300 text-gray-900 font-sm rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-500"
               >
@@ -235,21 +243,25 @@ const ProjectDetail = (projectdata) => {
               </button>
             </div>
 
-            <div className="flex flex-row justify-between">
-              <button
-                type="submit"
-                className="flex flex-row text-white bg-blue-500 hover:bg-blue-700 font-sm rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-800"
-              >
-                Edit
-              </button>
-              <button
-                type="button"
-                onClick={()=> handledeleteproject()}
-                className="flex flex-row text-white bg-blue-500 hover:bg-blue-700 font-sm rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-800"
-              >
-                Delete
-              </button>
-            </div>
+            {usercheck ? (
+              <div className="flex flex-row justify-between">
+                <button
+                  type="submit"
+                  className="flex flex-row text-white bg-blue-500 hover:bg-blue-700 font-sm rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-800"
+                >
+                  Edit
+                </button>
+                <button
+                  type="button"
+                  onClick={() => handledeleteproject()}
+                  className="flex flex-row text-white bg-blue-500 hover:bg-blue-700 font-sm rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-800"
+                >
+                  Delete
+                </button>
+              </div>
+            ) : (
+              <></>
+            )}
           </form>
         </div>
         <div className={userlist ? "w-1/2 ml-10 mt-10" : "hidden"}>

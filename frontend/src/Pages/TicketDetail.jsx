@@ -13,6 +13,7 @@ const TicketDetail = () => {
   const [comments, setcomments] = useState([]);
   const [newcomment, setnewcomment] = useState("");
   const [user, setuser] = useState("");
+  const [fileurl, setfileurl] = useState("");
   const date = new Date();
   const fulldate = date.toString();
   const [currentpage, setcureentpage] = useState(1);
@@ -33,6 +34,9 @@ const TicketDetail = () => {
   useEffect(() => {
     setticket(JSON.parse(localStorage.getItem("current-ticket")));
     setuser(JSON.parse(localStorage.getItem("current-user")).username);
+    const url = JSON.parse(localStorage.getItem("current-ticket")).file;
+    console.log(url)
+    setfileurl(`http://localhost:8888/${url}`);
     const commentsarray = JSON.parse(
       localStorage.getItem("current-ticket")
     ).comments;
@@ -75,7 +79,7 @@ const TicketDetail = () => {
         var d = new Date(b.date);
         return d - c;
       });
-      setnewcomment("")
+      setnewcomment("");
       setcomments(sortedarry);
     }
   };
@@ -131,7 +135,7 @@ const TicketDetail = () => {
               </div>
               <div className="mb-6">
                 <label
-                  htmlFor="priority"
+                  htmlFor="status"
                   className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                 >
                   Status
@@ -140,6 +144,20 @@ const TicketDetail = () => {
                   type="text"
                   id="title"
                   value={ticket.status}
+                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                />
+              </div>
+              <div className="mb-6">
+                <label
+                  htmlFor="priority"
+                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                >
+                  Priority
+                </label>
+                <input
+                  type="text"
+                  id="title"
+                  value={ticket.priority}
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 />
               </div>
@@ -185,38 +203,42 @@ const TicketDetail = () => {
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 />
               </div>
-              <div className="mb-6">
-                <label
-                  className="flex flex-row justify-between mb-4 text-sm font-medium text-gray-900 dark:text-white"
-                  htmlFor="user_avatar"
-                >
-                  Download file
-                  <button //onClick={}
+              {ticket.file != undefined ? (
+                <div className="mb-6">
+                  <label
+                    className="flex flex-row justify-between mb-4 text-sm font-medium text-gray-900 dark:text-white"
+                    htmlFor="user_avatar"
                   >
-                    <svg
-                      className="w-4 h-4 text-gray-800 dark:text-white"
-                      aria-hidden="true"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 20 19"
-                    >
-                      <path
-                        stroke="currentColor"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M15 15h.01M4 12H2a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-4a1 1 0 0 0-1-1h-3M9.5 1v10.93m4-3.93-4 4-4-4"
-                      />
-                    </svg>
-                  </button>
-                </label>
-                <input
-                  type="text"
-                  id="title"
-                  value={ticket.file}
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                />
-              </div>
+                    {ticket.file}
+                    <a href={fileurl} target="_blank">
+                      <svg
+                        className="w-4 h-4 text-gray-800 dark:text-white"
+                        aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 20 19"
+                      >
+                        <path
+                          stroke="currentColor"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M15 15h.01M4 12H2a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-4a1 1 0 0 0-1-1h-3M9.5 1v10.93m4-3.93-4 4-4-4"
+                        />
+                      </svg>
+                    </a>
+                  </label>
+                </div>
+              ) : (
+                <div className="mb-6">
+                  <label
+                    className="flex flex-row justify-between mb-4 text-sm font-medium text-gray-900 dark:text-white"
+                    htmlFor="user_avatar"
+                  >
+                    No file attached
+                  </label>
+                </div>
+              )}
             </form>
           </div>
           {/* comments history and new form */}

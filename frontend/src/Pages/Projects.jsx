@@ -203,12 +203,12 @@ const Projects = () => {
                       <td className="px-6 py-4">{proj.priority}</td>
                       <td className="px-6 py-4">{proj.onlydate}</td>
                       <td className="px-6 py-4">
-                        <a
+                        <button
                           onClick={() => setprojectdetail(proj)}
                           className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
                         >
                           details
-                        </a>
+                        </button>
                       </td>
                     </tr>
                   ))}

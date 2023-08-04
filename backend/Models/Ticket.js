@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 
 const ticketSchema = new mongoose.Schema({
   comments: {
-    type: Array
+    type: Array,
   },
   title: {
     type: String,
@@ -15,6 +15,12 @@ const ticketSchema = new mongoose.Schema({
     required: true,
     max: 50,
   },
+  priority: {
+    type: String,
+    required: true,
+    max: 50,
+  },
+
   user: {
     type: Object,
   },
@@ -23,16 +29,15 @@ const ticketSchema = new mongoose.Schema({
     required: true,
     max: 50,
   },
-  fulldate:{
+  fulldate: {
     type: String,
   },
-  onlydate:{
+  onlydate: {
     type: String,
   },
   file: {
     type: String,
   },
-
 });
 
 module.exports = mongoose.model("Tickets", ticketSchema);

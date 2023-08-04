@@ -8,7 +8,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 
 const Tickets = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [newticketcheck, setnewticketcheck] = useState(false);
   const [tickets, settickets] = useState([]);
   const [currentpage, setcureentpage] = useState(1);
@@ -120,11 +120,11 @@ const Tickets = () => {
     setnewticketcheck(data.check);
   };
 
-  const showticket=(ticket)=>{
-    localStorage.removeItem('current-ticket')
-    localStorage.setItem('current-ticket', JSON.stringify(ticket))
-    navigate('/ticketdetail')
-  }
+  const showticket = (ticket) => {
+    localStorage.removeItem("current-ticket");
+    localStorage.setItem("current-ticket", JSON.stringify(ticket));
+    navigate("/ticketdetail");
+  };
 
   return (
     <div className="h-screen bg-blue-100 dark:bg-gray-700">
@@ -172,6 +172,9 @@ const Tickets = () => {
                   Status
                 </th>
                 <th scope="col" className="px-6 py-3">
+                  Priority
+                </th>
+                <th scope="col" className="px-6 py-3">
                   Issued on
                 </th>
 
@@ -196,6 +199,7 @@ const Tickets = () => {
                     {ticket.title}
                   </th>
                   <td className="px-6 py-4">{ticket.projectname}</td>
+                  <td className="px-6 py-4">{ticket.priority}</td>
                   <td className="px-6 py-4">{ticket.status}</td>
                   <td className="px-6 py-4">{ticket.onlydate}</td>
                   <td className="px-6 py-4">{ticket.user}</td>

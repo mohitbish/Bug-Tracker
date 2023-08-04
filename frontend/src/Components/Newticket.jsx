@@ -1,4 +1,4 @@
-import React, { useEffect, useState,useRef } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -11,6 +11,7 @@ const Newticket = (props) => {
   const [title, settitle] = useState("");
   const [comment, setcomment] = useState("");
   const [username, setusername] = useState("");
+  const [priority, setpriority] = useState("low");
   const date = new Date();
   const onlydate = `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`;
   const fulldate = date.toString();
@@ -28,7 +29,7 @@ const Newticket = (props) => {
   useEffect(() => {
     const current_user = JSON.parse(localStorage.getItem("current-user"));
     setusername(current_user.username);
-    
+
     async function fetchdata() {
       let response = await axios.get(getprojects);
       if (response.data.status === false) {
@@ -94,6 +95,7 @@ const Newticket = (props) => {
         formData.append("comment", comment);
         formData.append("fulldate", fulldate);
         formData.append("onlydate", onlydate);
+        formData.append("priority", priority);
 
         const { data } = await axios.post(addticketwithfile, formData);
         if (data.status === false) {
@@ -153,7 +155,7 @@ const Newticket = (props) => {
   return (
     <>
       <form onSubmit={(event) => handlesubmit(event)} className="w-1/2 mt-10">
-        <div className="mb-6">
+        <div className="mb-4">
           <label
             htmlFor="project"
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
@@ -174,7 +176,7 @@ const Newticket = (props) => {
             ))}
           </select>
         </div>
-        <div className="mb-6">
+        <div className="mb-4">
           <label
             htmlFor="category"
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
@@ -189,15 +191,15 @@ const Newticket = (props) => {
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           />
         </div>
-        <div className="mb-6">
+        <div className="mb-4">
           <label
-            htmlFor="priority"
+            htmlFor="Status"
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
           >
             Status
           </label>
           <select
-            id="priority"
+            id="Status"
             onChange={(e) => setstatus(e.target.value)}
             value={status}
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -206,7 +208,25 @@ const Newticket = (props) => {
             <option value="Finished">Finished</option>
           </select>
         </div>
-        <div className="mb-6">
+        <div className="mb-4">
+          <label
+            htmlFor="priority"
+            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+          >
+            Priority
+          </label>
+          <select
+            id="priority"
+            onChange={(e) => setpriority(e.target.value)}
+            value={status}
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          >
+            <option value="low">Low</option>
+            <option value="moderate">Moderate</option>
+            <option value="high">High</option>
+          </select>
+        </div>
+        <div className="mb-4">
           <label
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
             htmlFor="user_avatar"
@@ -228,7 +248,7 @@ const Newticket = (props) => {
             Please upload any supporting documents
           </div>
         </div>
-        <div className="mb-6">
+        <div className="mb-4">
           <label
             htmlFor="message"
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"

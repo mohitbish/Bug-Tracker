@@ -20,6 +20,7 @@ module.exports.addticketwithfile = async (req, res, next) => {
       fulldate: req.body.fulldate,
       onlydate: req.body.onlydate,
       file: req.file.filename,
+      priority: req.body.priority
     });
     const newlist = projdata[0].tickets;
     newlist.push(newticket);
@@ -66,6 +67,7 @@ module.exports.addticket = async (req, res, next) => {
       projectname: req.body.projname,
       fulldate: req.body.fulldate,
       onlydate: req.body.onlydate,
+      priority: req.body.priority
     });
     const newlist = projdata[0].tickets;
     newlist.push(newticket);

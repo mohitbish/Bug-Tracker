@@ -14,6 +14,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 // parse application/json
 app.use(bodyParser.json());
+app.use(express.static('uploads'))
 
 mongoose
   .connect(process.env.MONGO_URL, {
@@ -32,3 +33,5 @@ app.use("/route", Routes);
 app.listen(process.env.PORT, () => {
   console.log(`listening on port ${process.env.PORT}`);
 });
+
+
