@@ -56,7 +56,7 @@ const Landing = () => {
   };
 
   return (
-    <div className="w-full h-screen flex flex-col items-center bg-white border-gray-200 dark:bg-gray-900">
+    <div className="w-full min-h-screen flex flex-col items-center bg-white border-gray-200 dark:bg-gray-900 pb-6">
       <div className="realtive flex flex-row  justify-between bg-white border-gray-200 dark:bg-gray-900 mb-10">     
         {/* logo */}
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto">

@@ -95,7 +95,7 @@ const Projects = () => {
   };
 
   return (
-    <div className="w-full min-h-screen bg-blue-100 dark:bg-gray-700">
+    <div className="w-full min-h-screen bg-blue-100 dark:bg-gray-700 pb-4">
       <NavbarComponenet />
 
       <div className="w-full  flex flex-row justify-around">

@@ -63,7 +63,7 @@ const Profile = () => {
   };
 
   return (
-    <div className="h-screen bg-blue-100 dark:bg-gray-700">
+    <div className="w-full min-h-screen bg-blue-100 dark:bg-gray-700 pb-6">
       <NavbarComponenet />
 
       <div className="relative flex flex-col items-center justify-center w-ful pt-10">

@@ -62,7 +62,7 @@ const Home = () => {
   const series = [52.8, 26.8, 20.4];
 
   return (
-    <div className="w-full h-screen bg-blue-100 dark:bg-gray-700">
+    <div className="w-full min-h-screen bg-blue-100 dark:bg-gray-700">
       <NavbarComponenet />
       <div className="grid grid-cols-2 justify-between p-6">
         <div class="flex flex-row items-start justify-start bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6 mr-6">

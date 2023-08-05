@@ -98,10 +98,10 @@ const AdminRole = () => {
   };
 
   return (
-    <div className="w-full min-h-screen bg-blue-100 dark:bg-gray-700">
+    <div className="w-full min-h-screen bg-blue-100 dark:bg-gray-700 pb-4">
       <NavbarComponenet />
 
-      <div className=" flex flex-col my-10 mx-4 items-center">
+      <div className=" flex flex-col mt-10 mx-4 items-center">
         {/* edit form */}
         <div
           className={

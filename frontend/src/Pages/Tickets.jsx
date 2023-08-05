@@ -127,7 +127,7 @@ const Tickets = () => {
   };
 
   return (
-    <div className="h-screen bg-blue-100 dark:bg-gray-700">
+    <div className="w-full min-h-screen bg-blue-100 dark:bg-gray-700 pb-4">
       <NavbarComponenet />
       <div className={newticketcheck ? "hidden" : "flex flex-col mt-10"}>
         <div className="flex flex-row justify-between px-10">

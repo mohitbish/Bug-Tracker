@@ -100,7 +100,7 @@ const ProjectDetail = (projectdata) => {
   };
 
   return (
-    <div className="relative w-full h-screen bg-blue-100 dark:bg-gray-700">
+    <div className="relative w-full min-h-screen bg-blue-100 dark:bg-gray-700 pb-4">
       <NavbarComponenet />
 
       <div className="relative w-full flex flex-row justify-around pt-8">
