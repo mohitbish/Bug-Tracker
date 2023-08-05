@@ -127,6 +127,7 @@ const Newticket = (props) => {
           comment,
           fulldate,
           onlydate,
+          priority,
         });
         if (data.status === false) {
           toast.error(data.msg, toastOptions);
