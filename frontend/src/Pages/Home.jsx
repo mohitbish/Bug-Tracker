@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import NavbarComponenet from "../Components/Navbar";
 import Chart from "react-apexcharts";
@@ -146,7 +146,7 @@ const Home = () => {
       sortedarry.forEach((element) => {
         const new_array = element.users;
         new_array.map((e) => {
-          if (e._id == current_user._id) {
+          if (e._id === current_user._id) {
             a1.push(element);
           }
         });
@@ -161,19 +161,19 @@ const Home = () => {
       let pog = 0;
       let pup = 0;
       a2.map((p) => {
-        if (p.priority == "low") {
+        if (p.priority === "low") {
           plt = plt + 1;
         }
-        if (p.priority == "moderate") {
+        if (p.priority === "moderate") {
           pmt = pmt + 1;
         }
-        if (p.priority == "high") {
+        if (p.priority === "high") {
           pht = pht + 1;
         }
-        if (p.status == "on-going") {
+        if (p.status === "on-going") {
           pog = pog + 1;
         }
-        if (p.status == "upcoming") {
+        if (p.status === "upcoming") {
           pup = pup + 1;
         }
       });
@@ -205,19 +205,19 @@ const Home = () => {
       let fn = 0;
       // data for chart
       ticketlist.map((t) => {
-        if (t.priority == "low") {
+        if (t.priority === "low") {
           lt = lt + 1;
         }
-        if (t.priority == "moderate") {
+        if (t.priority === "moderate") {
           mt = mt + 1;
         }
-        if (t.priority == "high") {
+        if (t.priority === "high") {
           ht = ht + 1;
         }
-        if (t.status == "in-progress") {
+        if (t.status === "in-progress") {
           ip = ip + 1;
         }
-        if (t.status == "Finished") {
+        if (t.status === "Finished") {
           fn = fn + 1;
         }
       });
