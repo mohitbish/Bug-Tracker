@@ -242,22 +242,22 @@ const Home = () => {
     <div className="w-full min-h-screen bg-blue-100 dark:bg-gray-700">
       <NavbarComponenet />
       <div className="grid grid-cols-2 justify-between p-6">
-        <div class="flex flex-row justify-between bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6 mr-6 mb-2">
+        <div className="flex flex-row justify-between bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6 mr-6 mb-2">
           <div className="flex flex-col justify-start items-start">
             <h1 className="text-center font-semibold text-2xl dark:text-white text-black p-4">
               Tickets By Priority
             </h1>
             <ul className="flex flex-col p-4">
-              <l1 className="m-2  font-medium dark:text-white text-black">
+              <li className="m-2  font-medium dark:text-white text-black">
                 High : {Math.round((priorityseries[0] * totaltickets) / 100)}
-              </l1>
-              <l1 className="m-2 font-medium dark:text-white text-black">
+              </li>
+              <li className="m-2 font-medium dark:text-white text-black">
                 Moderate :{" "}
                 {Math.round((priorityseries[1] * totaltickets) / 100)}
-              </l1>
-              <l1 className="m-2 font-medium dark:text-white text-black">
+              </li>
+              <li className="m-2 font-medium dark:text-white text-black">
                 Low : {Math.round((priorityseries[2] * totaltickets) / 100)}
-              </l1>
+              </li>
             </ul>
             <Link
               to="/tickets"
@@ -289,19 +289,19 @@ const Home = () => {
             height={300}
           />
         </div>
-        <div class="flex flex-row justify-between bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6 ml-6 mb-2">
+        <div className="flex flex-row justify-between bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6 ml-6 mb-2">
           <div className="flex flex-col justify-start items-start">
             <h1 className="text-center font-semibold text-2xl dark:text-white text-black p-4">
               Tickets By Status
             </h1>
             <ul className="flex flex-col p-4">
-              <l1 className="m-2  font-medium dark:text-white text-black">
+              <li className="m-2  font-medium dark:text-white text-black">
                 In-Progress :{" "}
                 {Math.round((statusseries[0] * totaltickets) / 100)}
-              </l1>
-              <l1 className="m-2 font-medium dark:text-white text-black">
+              </li>
+              <li className="m-2 font-medium dark:text-white text-black">
                 Finished : {Math.round((statusseries[1] * totaltickets) / 100)}
-              </l1>
+              </li>
             </ul>
             <Link
               to="/tickets"
@@ -333,24 +333,24 @@ const Home = () => {
             height={300}
           />
         </div>
-        <div class="flex flex-row justify-between bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6 mr-6">
+        <div className="flex flex-row justify-between bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6 mr-6">
           <div className="flex flex-col">
             <h1 className="text-center font-semibold text-2xl dark:text-white text-black p-4">
               Projects By Priority
             </h1>
             <ul className="flex flex-col p-4">
-              <l1 className="m-2  font-medium dark:text-white text-black">
+              <li className="m-2  font-medium dark:text-white text-black">
                 High :{" "}
                 {Math.round((projpriorityseries[0] * totalprojects) / 100)}
-              </l1>
-              <l1 className="m-2 font-medium dark:text-white text-black">
+              </li>
+              <li className="m-2 font-medium dark:text-white text-black">
                 Moderate :{" "}
                 {Math.round((projpriorityseries[1] * totalprojects) / 100)}
-              </l1>
-              <l1 className="m-2 font-medium dark:text-white text-black">
+              </li>
+              <li className="m-2 font-medium dark:text-white text-black">
                 Low :{" "}
                 {Math.round((projpriorityseries[2] * totalprojects) / 100)}
-              </l1>
+              </li>
             </ul>
             <Link
               to="/projects"
@@ -382,20 +382,20 @@ const Home = () => {
             height={300}
           />
         </div>
-        <div class="flex flex-row justify-between bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6 ml-6">
+        <div className="flex flex-row justify-between bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6 ml-6">
           <div className="flex flex-col">
             <h1 className="text-center font-semibold text-2xl dark:text-white text-black p-4">
               Projects By Status
             </h1>
             <ul className="flex flex-col p-4">
-              <l1 className="m-2  font-medium dark:text-white text-black">
-                In-Progress :{" "}
+              <li className="m-2  font-medium dark:text-white text-black">
+                On-Going :{" "}
                 {Math.round((projstatusseries[0] * totalprojects) / 100)}
-              </l1>
-              <l1 className="m-2 font-medium dark:text-white text-black">
-                Finished :{" "}
+              </li>
+              <li className="m-2 font-medium dark:text-white text-black">
+                Upcoming :{" "}
                 {Math.round((projstatusseries[1] * totalprojects) / 100)}
-              </l1>
+              </li>
             </ul>
             <Link
               to="/projects"

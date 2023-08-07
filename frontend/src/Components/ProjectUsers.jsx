@@ -128,9 +128,9 @@ const ProjectUsers = () => {
       {/* header */}
       <div className="flex flex-row justify-between">
         {showallusers ? (
-          <h1 className=" dark:text-white text-black">Add Users to {name}</h1>
+          <h1 className="font-semibold dark:text-white text-black">Add Users to {name}</h1>
         ) : (
-          <h1 className=" dark:text-white text-black">
+          <h1 className="font-semibold dark:text-white text-black">
             Users working on {name}
           </h1>
         )}
