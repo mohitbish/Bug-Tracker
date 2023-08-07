@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 const DarkModeComponent = () => {
-  const [darkMode, setDarkMode] = useState(true);
+  const [darkMode, setDarkMode] = useState(false);
 
   const changetheme = () => {
     setDarkMode(!darkMode);
