@@ -25,7 +25,7 @@ const Landing = () => {
 
   const demouserlogin = async () => {
     const { data } = await axios.post(loginRoute, {
-      email: "u1@g.com",
+      email: "du@g.com",
       password: "12345678",
     });
 

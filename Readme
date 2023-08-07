@@ -1,7 +1,3 @@
-fix ids of html element
-file download
-
-
 
 Bug Tracker
 
@@ -20,18 +16,17 @@ Bug Tracker
 
 
 
-#User Registration and Sign-in:
-#Users should be able to register with the bug tracker system.
-#Users should be able to sign in using their credentials (username/email and password).
-#only admin can add a user to admin role
-#Admins should have unique privileges and access to administrative features.
-#User Roles and Permissions:
+User Registration and Sign-in:
+Users should be able to register with the bug tracker system.
+Users should be able to sign in using their credentials (username/email and password).
+only admin can add a user to admin role
+Admins should have unique privileges and access to administrative features.
 #Admins should have additional privileges compared to regular users.
-#Admins should have a profile that includes additional administrative settings.
-#The system should allow customization of user roles and permissions.
+Admins should have a profile that includes additional administrative settings.
+The system should allow customization of user roles and permissions.
 
 Dashboard:
-#Upon signing in, users and admins should be directed to their respective dashboards.
+Upon signing in, users and admins should be directed to their respective dashboards.
 The dashboard should provide an overview of open/closed issues, assigned tasks, etc.
 
 Issue Management:
@@ -44,10 +39,6 @@ Search and Filters:
 Users should be able to search for specific issues based on various criteria (e.g., title, status, priority).
 The system should support filtering and sorting of issues for better organization.
 
-Notifications:
-Users and admins should receive notifications for new issues, status updates, or assignments.
-Notifications can be delivered via email, in-app notifications, or both.
-
 Workflow and Status:
 The system should support a customizable workflow with various statuses for issues (e.g., open, in progress, closed).
 Admins should be able to define the workflow stages and their transitions.
@@ -57,11 +48,8 @@ Users should be able to attach files (e.g., screenshots, documents) to bug repor
 The system should support file storage and retrieval.
 
 
-
 User Profile:
 Users should have a profile where they can manage their account information.
-
-
 
 Security:
 The system should employ secure authentication and encryption methods.

@@ -94,7 +94,61 @@ const Home = () => {
         },
       },
     },
-    labels: ["In-Progress", "Finishes"],
+    labels: ["In-Progress", "Finished"],
+    dataLabels: {
+      enabled: true,
+      style: {
+        fontFamily: "Inter, sans-serif",
+      },
+    },
+    legend: {
+      position: "bottom",
+      fontFamily: "Inter, sans-serif",
+    },
+    yaxis: {
+      labels: {
+        formatter: function (value) {
+          return value + "%";
+        },
+      },
+    },
+    xaxis: {
+      labels: {
+        formatter: function (value) {
+          return value + "%";
+        },
+      },
+      axisTicks: {
+        show: false,
+      },
+      axisBorder: {
+        show: false,
+      },
+    },
+  };
+  const projsoptions = {
+    colors: ["#1C64F2", "#16BDCA", "#9061F9"],
+    chart: {
+      height: 420,
+      width: "100%",
+      type: "pie",
+    },
+    stroke: {
+      colors: ["white"],
+      lineCap: "",
+    },
+    plotOptions: {
+      pie: {
+        labels: {
+          show: true,
+        },
+        size: "100%",
+        dataLabels: {
+          offset: -25,
+        },
+      },
+    },
+    labels: ["On-going", "Upcoming"],
     dataLabels: {
       enabled: true,
       style: {
@@ -420,7 +474,7 @@ const Home = () => {
             </Link>
           </div>
           <Chart
-            options={soptions}
+            options={projsoptions}
             series={projstatusseries}
             type="donut"
             width={300}
