@@ -36,7 +36,7 @@ const TicketDetail = () => {
     setuser(JSON.parse(localStorage.getItem("current-user")).username);
     const url = JSON.parse(localStorage.getItem("current-ticket")).file;
     console.log(url)
-    setfileurl(`http://localhost:8888/${url}`);
+    setfileurl(`https://bug-tracker-api-nht6.onrender.com/${url}`);
     const commentsarray = JSON.parse(
       localStorage.getItem("current-ticket")
     ).comments;
