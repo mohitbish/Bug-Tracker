@@ -6,7 +6,7 @@ var cors = require("cors");
 var bodyParser = require("body-parser");
 const Routes = require("./routes");
 
-app.use(cors({ origin: "http://localhost:3000" }));
+app.use(cors({ origin: "https://bug-tracker-z2mz.onrender.com" }));
 app.use(express.json());
 
 // parse application/x-www-form-urlencoded
