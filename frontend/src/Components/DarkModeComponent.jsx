@@ -14,7 +14,7 @@ const DarkModeComponent = () => {
 
   return (
     <div className="absolute top-3 right-2 z-10 ">
-      <button onClick={() => changetheme()}>
+      <button onClick={() => changetheme()} >
         {darkMode ? (
           <svg
             className="w-[30px] h-[30px] text-gray-800 dark:text-white"
