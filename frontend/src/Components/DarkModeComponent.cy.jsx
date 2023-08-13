@@ -7,5 +7,6 @@ describe('<DarkModeComponent />', () => {
     cy.mount(<DarkModeComponent />)
     cy.get('button').should('be.visible')
     cy.get('button').click()
+    cy.get('button').should('be.visible')
   })
 })
